@@ -1,8 +1,10 @@
 public class Node {
     //static global array of operations
+    public static String[] operatins = {"add", "sub", "mul", "div"};
 
     //pointers to left and right
-    //operation pointer member
+
+    //operation member
 
     //depth member variable
 

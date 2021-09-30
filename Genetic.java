@@ -3,7 +3,7 @@ public class Genetic {
     {
         //read in our data
             //reserve part of the data as "future data points"
-        //generate 100 random, but valid trees in a linked list
+        //generate 100 random, but valid trees in a array
 
         //set float value fittest greater than selected value
         //loop while fittest > some value
@@ -14,11 +14,14 @@ public class Genetic {
     }
 
     //method to run tournament selection, returning a tree
-        //remove two random trees from list and return the fittest
+        //pick N random trees from list and return the fittest
+            //increment times generation lived
+            //if times reproduced > random(5)
+                //"kill it"
 
     //method to produce the next generation
         //declare new population of trees
-        //loop until given population is empty
+        //loop new population >= current population or until current population is below certain level
             //run tournament selection to get one tree
             //if 30% chance
                 //add mutated offspring to new population

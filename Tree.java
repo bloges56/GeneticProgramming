@@ -1,6 +1,6 @@
 public class Tree
 {
-    
+    //int times reproduced member
 
     //point to root node
     //constructor
