@@ -1,28 +1,50 @@
 public class Node {
-    //static global array of operations
-    public static String[] operatins = {"add", "sub", "mul", "div"};
+    
 
     //pointers to left and right
+    public Node left, right;
 
     //operation member
+    public String operation;
 
     //depth member variable
+    public int depth;
 
     //independent boolean member variable
-    
+    public boolean independentVar = false;
+
     //constant int member variable
-    
+    public int constant;
+
+    //constructor for a root Node
+    public Node()
+    {
+        depth = 0;
+        left = right = null;
+    }
+
     //constructor(Node parent)
-        //depth = parent.depth++
-        //if depth >= rand(0,5)
-            //set left and right to null
-            //if rand(0,2) == 0
-                //set member variable to true
-            //else
-                //set constant to random int
-        //else
-            //set left and right to new nodes
-            //choose random operation
-                //generate random int i
-                //operation = operations[i]
+    public Node(Node parent)
+    {
+        depth = parent.depth++;
+        left = right = null;
+    }
+
+    //method to initialize the constant
+    public void setConstant(int value)
+    {
+        constant = value;
+    }
+
+    //method to set the independent var
+    public void setIndependent(boolean val)
+    {
+        independentVar = val;
+    }
+
+    //method to set operation
+    public void setOperation(String op)
+    {
+        operation = op;
+    }
 }
