@@ -3,20 +3,27 @@ public class Genetic {
     {
         //read in our data
             //reserve part of the data as "future data points"
-        //generate 100 random, but valid trees
+        //generate 100 random, but valid trees in a linked list
 
-        //should we contain population of trees
+        //set float value fittest greater than selected value
         //loop while fittest > some value
+            //get the next generation
+            //get the fittest in new generation
 
-        
-        
+        //test if our returned expression is "over-fitted"     
     }
 
-    //produce generation
-    //chance to mutate
-            //if we mutate, should it automaticall move on to next generation
-        //function on the fitness value determines odds of moving on to the next generation
-            //requires further research
-        //reproduction  
-        //survive
+    //method to run tournament selection, returning a tree
+        //remove two random trees from list and return the fittest
+
+    //method to produce the next generation
+        //declare new population of trees
+        //loop until given population is empty
+            //run tournament selection to get one tree
+            //if 30% chance
+                //add mutated offspring to new population
+            //else
+                //run tournament to get another tree and do crossover operation 
+                //and add offspring to new population
+        //return the new generation
 }

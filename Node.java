@@ -1,24 +1,26 @@
 public class Node {
     //static global array of operations
 
+    //pointers to left and right
+    //operation pointer member
 
-    //Questions
-        //if leaf node, what ratio of independent variable to random constant
-        //do we want to punish trees that have too many xs
-        //how do we control for the depth of a tree/complexity of an expression
-            //how do we measure for the complexity of a problem
-        //things to research
-            //preventing bloat and overfitting
-            //encouraging mentioned
-    //operation pointer
+    //depth member variable
 
-    //depth
-    //
-    //constructor
-        //if leaf
-            //random constant or x
+    //independent boolean member variable
+    
+    //constant int member variable
+    
+    //constructor(Node parent)
+        //depth = parent.depth++
+        //if depth >= rand(0,5)
+            //set left and right to null
+            //if rand(0,2) == 0
+                //set member variable to true
+            //else
+                //set constant to random int
         //else
+            //set left and right to new nodes
             //choose random operation
-                //generate random int x
-                //operation = operations[x]
+                //generate random int i
+                //operation = operations[i]
 }
