@@ -8,7 +8,7 @@ public class Node {
     public String operation;
 
     //depth member variable
-    public int depth;
+    // public int depth;
 
     //independent boolean member variable
     public boolean independentVar = false;
@@ -19,14 +19,14 @@ public class Node {
     //constructor for a root Node
     public Node()
     {
-        depth = 0;
+        // depth = 0;
         left = right = null;
     }
 
     //constructor(Node parent)
     public Node(Node parent)
     {
-        depth = parent.depth++;
+        // depth = parent.depth++;
         left = right = null;
     }
 
@@ -47,4 +47,7 @@ public class Node {
     {
         operation = op;
     }
+
+
+    //method to return if a node is a leaf node
 }
