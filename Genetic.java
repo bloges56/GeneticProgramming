@@ -1,6 +1,7 @@
 public class Genetic {
     public static void main(String[] args)
     {
+        FunTree test = new FunTree();
         //read in our data
             //reserve part of the data as "future data points"
         //generate 100 random, but valid trees in a array
@@ -12,6 +13,8 @@ public class Genetic {
 
         //test if our returned expression is "over-fitted"     
     }
+
+    //method to get fittest in given array of trees
 
     //method to run tournament selection, returning a tree
         //pick N random trees from list and return the fittest
