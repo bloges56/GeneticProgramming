@@ -31,10 +31,9 @@ public class FunTree
         //set left side
 
         //if leaf set side and return
-        if((int)(Math.random() * 5) <= depth + 1)
+        if((int)(Math.random() * 2) <= depth + 1)
         {
             current.left = createRandomLeaf(4);
-            System.out.println(depth + 1);
         }
         //if operation, recurse
         else
@@ -49,7 +48,6 @@ public class FunTree
          if((int)(Math.random() * 5) <= depth + 1)
          {
              current.right = createRandomLeaf(4);
-             System.out.println(depth + 1);
          }
          //if operation, recurse
          else
@@ -95,15 +93,32 @@ public class FunTree
         return leafNode;
     }
 
-    // @Override
-    // //method to print tree
-    // public String toString()
-    // {
-    //     if(this.rootNode.operation == null)
-    //     {
+    @Override
+    //method to print tree
+    public String toString()
+    {
+        String treeRep = "";
+        buildTreeString(treeRep, rootNode);
+        return treeRep;
+    }
 
-    //     }
-    // }
+    public String buildTreeString(String builder, Node current)
+    {
+        if(current == null)
+        {
+            return "";
+        }
+        if(current.left != null)
+        {
+            builder.concat(buildTreeString(builder.concat(current.toString()), current.left));
+            builder = builder.concat(" ");
+            
+            builder.concat(current.toString());
+            //System.out.println(builder);
+            buildTreeString(builder, current.right);
+            builder.concat(current.toString());
+        }  
+    }
 
     //method to deconstruct to expression
 
