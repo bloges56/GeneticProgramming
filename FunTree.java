@@ -96,10 +96,13 @@ public class FunTree
     {
         if(current == null)
         {
-            return "";
+            return builder;
         }
         builder = builder.concat(current.toString());
-        
+        builder = builder.concat("\n");
+        buildTreeString(current.left, builder);
+        buildTreeString(current.right, builder);
+        return builder;
         
     }
 
