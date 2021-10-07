@@ -30,8 +30,8 @@ public class FunTree
         
         //set left side
 
-        //if leaf set side and return
-        if((int)(Math.random() * 2) <= depth + 1)
+        //if leaf
+        if((int)(Math.random() * 5) <= depth + 1)
         {
             current.left = createRandomLeaf(4);
         }
@@ -44,8 +44,8 @@ public class FunTree
 
         //set right side
 
-        //if leaf set side and return
-         if((int)(Math.random() * 5) <= depth + 1)
+        //if leaf
+         if((int)(Math.random() * 8) <= depth + 1)
          {
              current.right = createRandomLeaf(4);
          }
@@ -56,17 +56,6 @@ public class FunTree
              randomTree(current.right, ++depth);
          }
     }
-
-        //initialize root node using node constructor
-            //if rand(0,2) == 0
-                //set member variable to true
-            //else
-                //set constant to random int
-        //else
-            //set left and right to new nodes
-            //choose random operation
-                //generate random int i
-                //operation = operations[i]
 
 
     //create random constant
@@ -98,29 +87,41 @@ public class FunTree
     public String toString()
     {
         String treeRep = "";
-        buildTreeString(treeRep, rootNode);
+        buildTreeString(rootNode, treeRep);
         return treeRep;
     }
 
-    public String buildTreeString(String builder, Node current)
+    //method to travers tree and build tree string
+    private String buildTreeString(Node current, String builder)
     {
         if(current == null)
         {
             return "";
         }
-        if(current.left != null)
-        {
-            builder.concat(buildTreeString(builder.concat(current.toString()), current.left));
-            builder = builder.concat(" ");
-            
-            builder.concat(current.toString());
-            //System.out.println(builder);
-            buildTreeString(builder, current.right);
-            builder.concat(current.toString());
-        }  
+        builder = builder.concat(current.toString());
+        
+        
     }
 
-    //method to deconstruct to expression
+    public void printTree()
+    {
+        traverseTree(rootNode);
+    }
+
+
+    private void traverseTree(Node current)
+    {
+        if(current != null)
+        {
+            System.out.println(current);
+            traverseTree(current.left);
+            traverseTree(current.right);
+        }
+    }
+
+ 
+
+    //method to evaluate tree with given X
 
     //cross over method
     //Tree crosssover (Tree crossover)
