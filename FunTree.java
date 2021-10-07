@@ -123,7 +123,11 @@ public class FunTree
  
 
     //method to evaluate tree with given X
+    
 
+    //method to make a type of computation given a string
+
+    
     //cross over method
     //Tree crosssover (Tree crossover)
 
@@ -133,7 +137,7 @@ public class FunTree
     //method to check percantage of independent variables
 
 
-    //method to return randomly selected node
+    //method to return randomly selected node to be used by mutation and crossover
 
     //fitness function
         //take the area of difference from given data
