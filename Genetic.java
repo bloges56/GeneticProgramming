@@ -3,7 +3,7 @@ public class Genetic {
     {
         FunTree test = new FunTree();
        System.out.println(test);
-       test.printTree();
+       //test.printTree();
         //read in our data
             //reserve part of the data as "future data points"
         //generate 100 random, but valid trees in a array
