@@ -82,24 +82,25 @@ public class FunTree
         return leafNode;
     }
 
+    //method to print a tree
     @Override
-    //method to print tree
     public String toString()
     {
-        String treeRep = "";
-        buildTreeString(rootNode, treeRep);
-        return treeRep;
+        String builder = "";
+        return buildTreeString(rootNode, builder, "", "");
     }
 
     //method to travers tree and build tree string
-    private String buildTreeString(Node current, String builder)
+    private String buildTreeString(Node current, String builder, String padding, String pointer)
     {
         if(current == null)
         {
             return "";
         }
-        
-        return current.toString() + buildTreeString(current.left, builder + "\n") + " " + buildTreeString(current.right, builder + "\n");
+        padding += "|   ";
+        String left = buildTreeString(current.left, builder, padding, (current.right != null) ? "├──" : "└──");
+        String right = buildTreeString(current.right, builder, padding, "└──"); 
+        return builder + padding + pointer + current.toString() + "\n" + left + right;
         
     }
 
