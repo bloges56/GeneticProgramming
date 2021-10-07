@@ -97,9 +97,9 @@ public class FunTree
         {
             return "";
         }
-        padding += "|   ";
-        String left = buildTreeString(current.left, builder, padding, (current.right != null) ? "├──" : "└──");
-        String right = buildTreeString(current.right, builder, padding, "└──"); 
+        String newPadding  = padding + "|  ";
+        String left = buildTreeString(current.left, builder, newPadding, (current.right != null) ? "├──" : "└──");
+        String right = buildTreeString(current.right, builder, newPadding, "└──"); 
         return builder + padding + pointer + current.toString() + "\n" + left + right;
         
     }
