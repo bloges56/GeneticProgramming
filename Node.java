@@ -1,5 +1,5 @@
 public class Node {
-    
+
 
     //pointers to left and right
     public Node left, right;
@@ -68,5 +68,5 @@ public class Node {
         return operation;
     }
     //method to return if a node is a leaf node
-    
+
 }

@@ -7,7 +7,7 @@ public class FunTree
     public int reproducedCount;
 
     //pointer to root node
-    Node rootNode;
+    static Node rootNode;
 
     //constructor
     public FunTree()
@@ -27,7 +27,7 @@ public class FunTree
     //method to generate tree with random expression
     private void randomTree(Node current, int depth)
     {
-        
+
         //set left side
 
         //if leaf
@@ -86,21 +86,21 @@ public class FunTree
     //method to print tree
     public String toString()
     {
-        String treeRep = "";
-        buildTreeString(rootNode, treeRep);
-        return treeRep;
+        // String treeRep = "";
+        String myRep = buildTreeString(rootNode);
+        String nameWithProperSpacing = myRep.replaceAll("\\s+", "\n");
+        return nameWithProperSpacing;
     }
 
-    //method to travers tree and build tree string
-    private String buildTreeString(Node current, String builder)
+    //method to traverse tree and build tree string
+    private String buildTreeString(Node current)
     {
         if(current == null)
         {
             return "";
         }
-        builder = builder.concat(current.toString());
-        
-        
+        // System.out.println(current.toString());
+        return current.toString() + " " + buildTreeString(current.left) + " " + buildTreeString(current.right);
     }
 
     public void printTree()
@@ -119,7 +119,7 @@ public class FunTree
         }
     }
 
- 
+
 
     //method to evaluate tree with given X
 

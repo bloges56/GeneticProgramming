@@ -2,8 +2,8 @@ public class Genetic {
     public static void main(String[] args)
     {
         FunTree test = new FunTree();
-       System.out.println(test);
-       test.printTree();
+        System.out.println(test);
+        // test.printTree();
         //read in our data
             //reserve part of the data as "future data points"
         //generate 100 random, but valid trees in a array
@@ -13,7 +13,7 @@ public class Genetic {
             //get the next generation
             //get the fittest in new generation
 
-        //test if our returned expression is "over-fitted"     
+        //test if our returned expression is "over-fitted"
     }
 
     //method to get fittest in given array of trees
@@ -31,7 +31,7 @@ public class Genetic {
             //if 30% chance
                 //add mutated offspring to new population
             //else
-                //run tournament to get another tree and do crossover operation 
+                //run tournament to get another tree and do crossover operation
                 //and add offspring to new population
         //return the new generation
 }
