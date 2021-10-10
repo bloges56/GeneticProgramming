@@ -48,6 +48,25 @@ public class Node {
         operation = op;
     }
 
-
+    //override toString
+    @Override
+    public String toString()
+    {
+        //check if leaf
+        if(operation == null)
+        {
+            //check if independent var
+            if(independentVar)
+            {
+                return "X";
+            }
+            else
+            {
+                return String.valueOf(constant);
+            }
+        }
+        return operation;
+    }
     //method to return if a node is a leaf node
+    
 }
