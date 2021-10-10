@@ -177,12 +177,23 @@ public class FunTree
 
     
     //cross over method
-    //Tree crosssover (Tree crossover)
+    //Tree[] crosssover (Tree crossover)
+        //pick random node on this tree
+        //create new tree A and set root node to randomly selected node from this tree
+        //create new tree B and set root node to given tree root node
+        //pick random node of B and set it to the A root Node
+        //return B
+
 
     //mutation method
     //mutation()
 
-    //method to return randomly selected node to be used by mutation and crossover
+        //create random sub tree from randomly selected node
+
+        //set left or right child to random tree
+            //in order to decrease complexity, only trees of max 3 depth
+
+    //method to return a randomly selected node to be used by mutation and crossover
 
     //fitness function
         //take the area of difference from given data
