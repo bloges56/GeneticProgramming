@@ -3,6 +3,12 @@ public class FunTree
     //static global array of operations
     public static String[] operations = {"add", "sub", "mul", "div"};
 
+    //set depth max depth range
+    private final int maxDepth = 5;
+
+    //set range of constant for leaves
+    private final int constantRange = 5;
+
     //times reproduced member
     public int reproducedCount;
 
@@ -31,9 +37,9 @@ public class FunTree
         //set left side
 
         //if leaf
-        if((int)(Math.random() * 5) <= depth + 1)
+        if((int)(Math.random() * maxDepth) <= depth + 1)
         {
-            current.left = createRandomLeaf(4);
+            current.left = createRandomLeaf(constantRange);
         }
         //if operation, recurse
         else
@@ -45,9 +51,9 @@ public class FunTree
         //set right side
 
         //if leaf
-         if((int)(Math.random() * 8) <= depth + 1)
+         if((int)(Math.random() * maxDepth) <= depth + 1)
          {
-             current.right = createRandomLeaf(4);
+             current.right = createRandomLeaf(constantRange);
          }
          //if operation, recurse
          else
@@ -69,7 +75,13 @@ public class FunTree
         }
         else
         {
-            leafNode.constant = (int)(Math.random() * range);
+            //reduce chances of 0
+            int temp = (int)(Math.random() * range);
+            if(temp == 0)
+            {
+                temp = (int)(Math.random() * range);
+            }
+            leafNode.constant = temp;
         }
         return leafNode;
     }
@@ -104,28 +116,64 @@ public class FunTree
         
     }
 
-    public void printTree()
+    //evaluate the tree at the root
+    public float evaluate(float x)
     {
-        traverseTree(rootNode);
+        return evaluateUtil(x, rootNode);
     }
-
-
-    private void traverseTree(Node current)
-    {
-        if(current != null)
-        {
-            System.out.println(current);
-            traverseTree(current.left);
-            traverseTree(current.right);
-        }
-    }
-
  
 
     //method to evaluate tree with given X
-    
+    private float evaluateUtil(float x, Node current)
+    {
+        //if current node is null return 0
+        if(current == null)
+        {
+            return 0;
+        }
+
+        //evaluate the left and right sides and input into operation method
+        if(current.operation != null)
+        {
+            float left = evaluateUtil(x, current.left);
+            float right = evaluateUtil(x, current.right);
+            return doOperation(current.operation, left, right);
+        }
+
+        //if leaf and independentVar return x
+        if(current.independentVar)
+        {
+            return x;
+        }
+
+        //if leaf constant, return constant
+        return (float) current.constant;
+    }
 
     //method to make a type of computation given a string
+    private float doOperation(String op, float left, float right)
+    {
+        if(op.equals("add"))
+        {
+            return right + left;
+        }
+
+        else if(op.equals("sub"))
+        {
+            return left - right;
+        }
+        else if(op.equals("mul"))
+        {
+            return right * left;
+        }
+
+        if(right == 0)
+        {
+            return left;
+        }
+
+        return left / right;
+    }
 
     
     //cross over method
@@ -133,9 +181,6 @@ public class FunTree
 
     //mutation method
     //mutation()
-
-    //method to check percantage of independent variables
-
 
     //method to return randomly selected node to be used by mutation and crossover
 

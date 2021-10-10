@@ -3,6 +3,7 @@ public class Genetic {
     {
         FunTree test = new FunTree();
        System.out.println(test);
+       System.out.println(test.evaluate(1));
        //test.printTree();
         //read in our data
             //reserve part of the data as "future data points"
