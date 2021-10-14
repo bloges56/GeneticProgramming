@@ -1,16 +1,10 @@
-import java.util.Queue;
-
-import javax.swing.plaf.basic.BasicBorders.RadioButtonBorder;
-
-import java.util.LinkedList;
-
 public class FunTree
 {
     //static global array of operations
     public static String[] operations = {"add", "sub", "mul", "div"};
 
     //set depth max depth range
-    private final int maxDepth = 4;
+    private final int maxDepth = 5;
 
     //set range of constant for leaves
     private final int constantRange = 5;
@@ -41,9 +35,10 @@ public class FunTree
     }
 
     //constructor with given root node
-    public FunTree(Node root)
+    public FunTree(Node newRoot)
     {
-        rootNode = root;
+        rootNode = new Node();
+        rootNode.replace(newRoot);
     }
 
     //method to generate tree with random expression
@@ -220,8 +215,7 @@ public class FunTree
     //mutation method
     public FunTree mutation()
     {
-
-        Node tempNode = rootNode;
+        FunTree mutateTree = new FunTree(rootNode);
 
         //create random sub tree from randomly selected node
         // Node randomNode = tempTree.getRandomNode();
@@ -230,11 +224,9 @@ public class FunTree
 
         randomTree.randomTree(randomTree.rootNode, mutationDepth);
 
-        getRandomNode(randomTree);
+        mutateTree.getRandomNode(randomTree);
 
-        FunTree mutatedTree = new FunTree(rootNode);
-        rootNode = tempNode;
-        return mutatedTree;
+        return mutateTree;
     }
 
 
@@ -253,20 +245,23 @@ public class FunTree
     {
         if(decrementer == 0)
         {
-            current = replace.rootNode;
+            current.replace(replace.rootNode);
             return;
         }
         if(current.operation == null)
         {
-            current = replace.rootNode;
+            current.replace(replace.rootNode);
             return;
         }
         if((int)Math.random() * 2 == 0)
         {
             getRandomNodeUtil(decrementer--, current.left, replace);
         }
-
-        getRandomNodeUtil(decrementer--, current.right, replace);
+        else
+        {
+            getRandomNodeUtil(decrementer--, current.right, replace);
+        }
+        
 
         // Node current = rootNode;
 
