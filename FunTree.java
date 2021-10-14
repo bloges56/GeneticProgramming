@@ -4,13 +4,13 @@ public class FunTree
     public static String[] operations = {"add", "sub", "mul", "div"};
 
     //set depth max depth range
-    private final int maxDepth = 5;
+    private final int maxDepth = 8;
 
     //set range of constant for leaves
     private final int constantRange = 5;
 
     //set range for selecting random node
-    private final int randomNodeRange = 4;
+    private final int randomNodeRange = 3;
 
     //set starting point for random node
     private final int randomNodeStart = 2;
@@ -30,8 +30,6 @@ public class FunTree
     {
         rootNode = createRandomOp();
         randomTree(rootNode, 0);
-        System.out.println("Tree made");
-
     }
 
     //constructor with given root node
@@ -204,12 +202,26 @@ public class FunTree
 
     
     //cross over method
-    //Tree[] crosssover (Tree crossover)
+    public FunTree crossover(FunTree mother)
+    {
+        //Tree[] crosssover (Tree crossover)
         //pick random node on this tree
+        FunTree father = new FunTree(rootNode);
+        Node randomNodeP1 = father.getRandomNode();
+
         //create new tree A and set root node to randomly selected node from this tree
+        // FunTree subTreeP1 = new FunTree(randomNodeP1);
+
         //create new tree B and set root node to given tree root node
+        FunTree child = new FunTree(mother.rootNode);
+        
+
         //pick random node of B and set it to the A root Node
-        //return B
+        Node randomNodeP2 = child.getRandomNode();
+        randomNodeP2.replace(randomNodeP1);
+        return child;
+    }
+    
 
 
     //mutation method
@@ -222,9 +234,14 @@ public class FunTree
 
         FunTree randomTree = new FunTree(createRandomNode());
 
-        randomTree.randomTree(randomTree.rootNode, mutationDepth);
+        if(randomTree.rootNode.operation != null)
+        {
+            randomTree.randomTree(randomTree.rootNode, mutationDepth);
+        }
+        
+        Node randomNode = mutateTree.getRandomNode();
 
-        mutateTree.getRandomNode(randomTree);
+        randomNode.replace(randomTree.rootNode);
 
         return mutateTree;
     }
@@ -233,56 +250,32 @@ public class FunTree
         
 
     //method to return a randomly selected node to be used by mutation and crossover
-    public void getRandomNode(FunTree replace)
+    public Node getRandomNode()
     {
         int decrementer = (int)((Math.random() * randomNodeRange) + randomNodeStart);
-        getRandomNodeUtil(decrementer, rootNode, replace);
+        return getRandomNodeUtil(decrementer, rootNode);
     }
 
 
     //helper method to return a randomly selected node to be used by mutation and crossover
-    private void getRandomNodeUtil(int decrementer, Node current, FunTree replace)
+    private Node getRandomNodeUtil(int decrementer, Node current)
     {
         if(decrementer == 0)
         {
-            current.replace(replace.rootNode);
-            return;
+            return current;
         }
         if(current.operation == null)
         {
-            current.replace(replace.rootNode);
-            return;
+            return current;
         }
         if((int)Math.random() * 2 == 0)
         {
-            getRandomNodeUtil(decrementer--, current.left, replace);
+            return getRandomNodeUtil(decrementer--, current.left);
         }
         else
         {
-            getRandomNodeUtil(decrementer--, current.right, replace);
+            return getRandomNodeUtil(decrementer--, current.right);
         }
-        
-
-        // Node current = rootNode;
-
-        // while(decrementer != 0)
-        // {
-        //     if(current.operation == null)
-        //     {
-        //         return current;
-        //     }
-        //     if((int) (Math.random() * 2) == 0)
-        //     {
-        //         current = current.left;
-        //     }
-        //     else
-        //     {
-        //         current = current.right;
-        //     }
-        //     decrementer--;
-        // }
-
-        // return current;
     }
 
     //fitness function
