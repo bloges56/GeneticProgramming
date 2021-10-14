@@ -395,3 +395,6 @@ FodyWeavers.xsd
 
 #ignore breakpoints
 .ipnyb_checkpoints/
+
+#ignore csv files
+*.csv
