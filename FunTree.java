@@ -1,4 +1,7 @@
 import java.util.Queue;
+
+import javax.swing.plaf.basic.BasicBorders.RadioButtonBorder;
+
 import java.util.LinkedList;
 
 public class FunTree
@@ -218,52 +221,73 @@ public class FunTree
     public FunTree mutation()
     {
 
-        Node rootCopy = this.rootNode;
-
-        FunTree tempTree = new FunTree(rootCopy);
+        Node tempNode = rootNode;
 
         //create random sub tree from randomly selected node
-        Node randomNode = tempTree.getRandomNode();
+        // Node randomNode = tempTree.getRandomNode();
 
         FunTree randomTree = new FunTree(createRandomNode());
 
         randomTree.randomTree(randomTree.rootNode, mutationDepth);
 
-        randomNode = randomTree.rootNode;
+        getRandomNode(randomTree);
 
-        return tempTree;
+        FunTree mutatedTree = new FunTree(rootNode);
+        rootNode = tempNode;
+        return mutatedTree;
     }
 
 
         
 
     //method to return a randomly selected node to be used by mutation and crossover
-    public Node getRandomNode()
+    public void getRandomNode(FunTree replace)
     {
         int decrementer = (int)((Math.random() * randomNodeRange) + randomNodeStart);
-        return getRandomNodeUtil(decrementer);
+        getRandomNodeUtil(decrementer, rootNode, replace);
     }
 
 
     //helper method to return a randomly selected node to be used by mutation and crossover
-    private Node getRandomNodeUtil(int decrementer)
+    private void getRandomNodeUtil(int decrementer, Node current, FunTree replace)
     {
-        Queue<Node> frontier = new LinkedList<Node>();
-        frontier.add(rootNode);
-
-        while(decrementer != 0)
+        if(decrementer == 0)
         {
-            if(frontier.peek() == null)
-            {
-                return frontier.remove();
-            }
-            Node current = frontier.remove();
-            frontier.add(current.left);
-            frontier.add(current.right);
-            decrementer--;
+            current = replace.rootNode;
+            return;
+        }
+        if(current.operation == null)
+        {
+            current = replace.rootNode;
+            return;
+        }
+        if((int)Math.random() * 2 == 0)
+        {
+            getRandomNodeUtil(decrementer--, current.left, replace);
         }
 
-        return frontier.remove();
+        getRandomNodeUtil(decrementer--, current.right, replace);
+
+        // Node current = rootNode;
+
+        // while(decrementer != 0)
+        // {
+        //     if(current.operation == null)
+        //     {
+        //         return current;
+        //     }
+        //     if((int) (Math.random() * 2) == 0)
+        //     {
+        //         current = current.left;
+        //     }
+        //     else
+        //     {
+        //         current = current.right;
+        //     }
+        //     decrementer--;
+        // }
+
+        // return current;
     }
 
     //fitness function
