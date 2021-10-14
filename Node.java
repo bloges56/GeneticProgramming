@@ -48,6 +48,37 @@ public class Node {
         operation = op;
     }
 
+    public void replace(Node copyFrom)
+    {
+        if(copyFrom.left == null)
+        {
+            left = null;
+        }
+        else
+        {
+            if(left == null)
+            {
+                left = new Node();
+            }
+            left.replace(copyFrom.left);
+        }
+        if(copyFrom.right == null)
+        {
+            right = null;
+        }
+        else
+        {
+            if(right == null)
+            {
+                right = new Node();
+            }
+            right.replace(copyFrom.right);
+        }
+        constant = copyFrom.constant;
+        independentVar = copyFrom.independentVar;
+        operation = copyFrom.operation;
+    }
+
     //override toString
     @Override
     public String toString()
