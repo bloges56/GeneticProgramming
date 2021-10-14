@@ -1,9 +1,15 @@
+
 public class Genetic {
     public static void main(String[] args)
     {
         FunTree test = new FunTree();
        System.out.println(test);
-       System.out.println(test.evaluate(1));
+    //    System.out.println(test.evaluate(1));
+    //    System.out.println(test.getRandomNode());
+
+       FunTree mutated = test.mutation();
+       System.out.println(test);
+       System.out.println("\n" + mutated);
        //test.printTree();
         //read in our data
             //reserve part of the data as "future data points"
