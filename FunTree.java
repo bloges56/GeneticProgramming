@@ -296,4 +296,14 @@ public class FunTree
 
         return sum;
     }
+
+    public boolean equals(FunTree tree)
+    {
+        return tree.getFitness() == getFitness();
+    }
+
+    public float HashCode()
+    {
+        return getFitness();
+    }
 }

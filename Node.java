@@ -98,6 +98,5 @@ public class Node {
         }
         return operation;
     }
-    //method to return if a node is a leaf node
-    
+    //method to return if a node is a leaf node 
 }
