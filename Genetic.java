@@ -68,7 +68,8 @@ public class Genetic {
         while(fittestVal >= 0.5)
         {
             // get the fittest in new generation
-            fittestTree = nextGen(population);
+            population = nextGen(population);
+            fittestTree = population.peek();
             fittestVal = fittestTree.getFitness();
             System.out.println(fittestVal);
         }
@@ -107,7 +108,7 @@ public class Genetic {
     }
 
     // method to produce the next generation and return the fittest in the generation
-    private static FunTree nextGen(PriorityQueue<FunTree> population)
+    private static PriorityQueue<FunTree> nextGen(PriorityQueue<FunTree> population)
     {
         // declare new population of trees
         PriorityQueue<FunTree> nextGen = new PriorityQueue<>(treeComparator);
@@ -136,11 +137,8 @@ public class Genetic {
             }
         }
 
-        //set the population to the next gen
-        population = nextGen;
-
-        // return the fittest of the new generation
-        return nextGen.remove();
+        //return the nextGen
+        return nextGen;
     }
     
 }
