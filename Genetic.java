@@ -68,7 +68,7 @@ public class Genetic {
         while(fittestVal >= 0.5)
         {
             // get the fittest in new generation
-            population = nextGen(population);
+            population = new PriorityQueue<FunTree>(nextGen(population));
             fittestTree = population.peek();
             fittestVal = fittestTree.getFitness();
             System.out.println(fittestVal);
