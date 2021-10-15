@@ -6,7 +6,7 @@ public class Genetic {
     public static Comparator<FunTree> treeComparator = new Comparator<FunTree>() {
         @Override
         public int compare(FunTree f1, FunTree f2) {
-            return (int) (f2.getFitness() - f1.getFitness());
+            return (int) (f1.getFitness() - f2.getFitness());
         }
     };
     public static void main(String[] args) {
