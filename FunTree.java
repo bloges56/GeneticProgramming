@@ -1,7 +1,6 @@
-import java.util.Comparator;
 import java.util.List;
 
-public class FunTree implements Comparator<FunTree>
+public class FunTree
 {
     //static global array of operations
     private static String[] operations = {"add", "sub", "mul", "div"};
@@ -294,9 +293,4 @@ public class FunTree implements Comparator<FunTree>
 
         return sum;
     }
-    
-    public int compare(FunTree f, FunTree f1) {
-        return (int) (f1.getFitness() - f.getFitness());
-     }
-
 }

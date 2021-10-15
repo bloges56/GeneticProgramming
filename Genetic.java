@@ -3,6 +3,12 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 
 public class Genetic {
+    public static Comparator<FunTree> treeComparator = new Comparator<FunTree>() {
+        @Override
+        public int compare(FunTree f1, FunTree f2) {
+            return (int) (f2.getFitness() - f1.getFitness());
+        }
+    };
     public static void main(String[] args) {
         // FunTree test = new FunTree();
         // System.out.println(test);
@@ -47,7 +53,8 @@ public class Genetic {
         FunTree.data = data;
         // reserve part of the data as "future data points"
         // generate 100 random, but valid trees in a array
-        PriorityQueue<FunTree> population = new PriorityQueue<>();
+       
+        PriorityQueue<FunTree> population = new PriorityQueue<>(treeComparator);
         for(int i = 0; i <100; i++)
         {
             population.add(new FunTree());
@@ -88,7 +95,7 @@ public class Genetic {
     // pick N random trees from list and return the fittest
     private static FunTree tournament(FunTree[] trees)
     {
-        PriorityQueue<FunTree> selectedTrees = new PriorityQueue<>();
+        PriorityQueue<FunTree> selectedTrees = new PriorityQueue<>(treeComparator);
         for(int i = 0; i < 5; i++)
         {
             int random = (int) Math.random() * trees.length;
@@ -103,7 +110,7 @@ public class Genetic {
     private static FunTree nextGen(PriorityQueue<FunTree> population)
     {
         // declare new population of trees
-        PriorityQueue<FunTree> nextGen = new PriorityQueue<>();
+        PriorityQueue<FunTree> nextGen = new PriorityQueue<>(treeComparator);
         FunTree[] popArr = (FunTree[]) population.toArray();
 
         //loop until new population is fulled
