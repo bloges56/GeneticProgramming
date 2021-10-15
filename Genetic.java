@@ -93,13 +93,13 @@ public class Genetic {
 
     // method to run tournament selection, returning a tree
     // pick N random trees from list and return the fittest
-    private static FunTree tournament(FunTree[] trees)
+    private static FunTree tournament(List<FunTree> trees)
     {
         PriorityQueue<FunTree> selectedTrees = new PriorityQueue<>(treeComparator);
         for(int i = 0; i < 5; i++)
         {
-            int random = (int) Math.random() * trees.length;
-            selectedTrees.add(trees[random]);
+            int random = (int) Math.random() * trees.size();
+            selectedTrees.add(trees.get(random));
         }
 
         return selectedTrees.remove();
@@ -111,13 +111,13 @@ public class Genetic {
     {
         // declare new population of trees
         PriorityQueue<FunTree> nextGen = new PriorityQueue<>(treeComparator);
-        FunTree[] popArr = (FunTree[]) population.toArray();
+        List<FunTree> popList = new ArrayList<FunTree>(population);
 
         //loop until new population is fulled
-        for(int i = 0; i < popArr.length; i+=2)
+        for(int i = 0; i < popList.size(); i+=2)
         {
             // run tournament selection to get one tree
-            FunTree selected = tournament(popArr);
+            FunTree selected = tournament(popList);
             nextGen.add(selected);
             // if 30% chance
             if((int)Math.random() * 10 <= 3)
@@ -130,7 +130,7 @@ public class Genetic {
             {
                 //run tournament to get another tree and do crossover operation
                 //and add offspring to new population
-                FunTree mate = tournament(popArr);
+                FunTree mate = tournament(popList);
                 FunTree child = selected.crossover(mate);
                 nextGen.add(child);
             }
