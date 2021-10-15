@@ -83,13 +83,19 @@ public class Genetic {
     //method to get fittest in given array of trees
     private static FunTree getFittest(ArrayList<FunTree> trees)
     {
-        PriorityQueue<FunTree> selected = new PriorityQueue<>(treeComparator);
+        FunTree fittestTree = trees.get(0);
+        float fittestValue = fittestTree.getFitness();
         for(int i = 0; i < trees.size(); i++)
         {
-            selected.add(trees.get(i));
+            float fitness = trees.get(i).getFitness();
+            if(fitness < fittestValue)
+            {
+                fittestTree = trees.get(i);
+                fittestValue = fittestTree.getFitness();
+            }
         }
 
-        return selected.remove();
+        return fittestTree;
     }
 
     private static int TOURNAMENT_SIZE = 3;
