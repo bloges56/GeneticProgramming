@@ -55,7 +55,7 @@ public class Genetic {
         // generate 100 random, but valid trees in a array
        
         PriorityQueue<FunTree> population = new PriorityQueue<>(treeComparator);
-        for(int i = 0; i <100; i++)
+        for(int i = 0; i <300; i++)
         {
             population.add(new FunTree());
         }
@@ -92,12 +92,13 @@ public class Genetic {
     //     return minTree;
     // }
 
+    private static int TOURNAMENT_SIZE = 3;
     // method to run tournament selection, returning a tree
     // pick N random trees from list and return the fittest
     private static FunTree tournament(List<FunTree> trees)
     {
         PriorityQueue<FunTree> selectedTrees = new PriorityQueue<>(treeComparator);
-        for(int i = 0; i < 5; i++)
+        for(int i = 0; i < TOURNAMENT_SIZE; i++)
         {
             int random = (int) Math.random() * trees.size();
             selectedTrees.add(trees.get(random));
@@ -115,25 +116,25 @@ public class Genetic {
         List<FunTree> popList = new ArrayList<FunTree>(population);
 
         //loop until new population is fulled
-        for(int i = 0; i < popList.size(); i+=2)
+        for(int i = 0; i < popList.size(); i++)
         {
             // run tournament selection to get one tree
             FunTree selected = tournament(popList);
-            nextGen.add(selected);
             // if 30% chance
             if((int)Math.random() * 10 <= 3)
-            {
-                //add mutated offspring to new population
-                FunTree mutated = selected.mutation();
-                nextGen.add(mutated);
-            }
-            else
             {
                 //run tournament to get another tree and do crossover operation
                 //and add offspring to new population
                 FunTree mate = tournament(popList);
                 FunTree child = selected.crossover(mate);
                 nextGen.add(child);
+                
+            }
+            else
+            {
+                //add mutated offspring to new population
+                FunTree mutated = selected.mutation();
+                nextGen.add(mutated);
             }
         }
 
