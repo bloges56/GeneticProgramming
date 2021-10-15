@@ -1,9 +1,12 @@
+import java.util.Comparator;
 import java.util.List;
 
-public class FunTree
+public class FunTree implements Comparator<FunTree>
 {
     //static global array of operations
-    public static String[] operations = {"add", "sub", "mul", "div"};
+    private static String[] operations = {"add", "sub", "mul", "div"};
+
+    public static List<Float[]> data;
 
     //set depth max depth range
     private final int maxDepth = 5;
@@ -279,7 +282,7 @@ public class FunTree
 
     //fitness function
     //take the area of difference from given data
-    public float getFitness(List<Float[]> data)
+    public float getFitness()
     {
         float sum = 0.f;
         for(int i =0; i<data.size(); i++)
@@ -292,5 +295,8 @@ public class FunTree
         return sum;
     }
     
+    public int compare(FunTree f, FunTree f1) {
+        return (int) (f1.getFitness() - f.getFitness());
+     }
 
 }
