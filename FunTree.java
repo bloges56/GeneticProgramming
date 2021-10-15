@@ -6,23 +6,19 @@ public class FunTree
     public static String[] operations = {"add", "sub", "mul", "div"};
 
     //set depth max depth range
-    private final int maxDepth = 8;
+    private final int maxDepth = 5;
 
     //set range of constant for leaves
     private final int constantRange = 5;
 
     //set range for selecting random node
-    private final int randomNodeRange = 3;
+    private final int randomNodeRange = 2;
 
     //set starting point for random node
     private final int randomNodeStart = 2;
 
     //declare mutation tree depth
     private final int mutationDepth = 3;
-
-
-    //times reproduced member
-    public int reproducedCount;
 
     //pointer to root node
     Node rootNode;
@@ -281,6 +277,8 @@ public class FunTree
     }
 
 
+    //fitness function
+    //take the area of difference from given data
     public float getFitness(List<Float[]> data)
     {
         float sum = 0.f;
@@ -293,7 +291,6 @@ public class FunTree
 
         return sum;
     }
-    //fitness function
-        //take the area of difference from given data
+    
 
 }

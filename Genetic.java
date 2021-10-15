@@ -43,10 +43,6 @@ public class Genetic {
         {
             System.out.println("data not found");
         }
-
-        FunTree test = new FunTree();
-        float fitness = test.getFitness(data);
-        System.out.println(fitness);
         
         // reserve part of the data as "future data points"
         // generate 100 random, but valid trees in a array
@@ -63,10 +59,8 @@ public class Genetic {
         // loop while fittest > some value
         while(fittestVal >= 0.5)
         {
-            // get the next generation
-            population = nextGen(population, data);
             // get the fittest in new generation
-            fittestTree = getFittest(population, data);
+            fittestTree = nextGen(population, data);
             fittestVal = fittestTree.getFitness(data);
             System.out.println(fittestVal);
         }
@@ -111,37 +105,61 @@ public class Genetic {
         
     }
 
-    // method to produce the next generation
-    private static FunTree[] nextGen(FunTree[] curGen, List<Float[]> data)
+    // method to produce the next generation and return the fittest in the generation
+    private static FunTree nextGen(FunTree[] population, List<Float[]> data)
     {
         // declare new population of trees
-        FunTree[] nextGen = new FunTree[curGen.length];
+        FunTree[] nextGen = new FunTree[population.length];
+
+        //track fittest tree
+        FunTree fittestTree = new FunTree();
+        float fittestVal = Float.MAX_VALUE;
         //loop until new population is fulled
         for(int i = 0; i < nextGen.length; i+=2)
         {
             // run tournament selection to get one tree
-            FunTree selected = tournament(curGen, data);
+            FunTree selected = tournament(population, data);
             nextGen[i] = selected;
-
+            float fitness = selected.getFitness(data);
+            if(fitness <= fittestVal)
+            {
+                fittestVal = fitness;
+                fittestTree.rootNode.replace(selected.rootNode);
+            }
             // if 30% chance
             if((int)Math.random() * 10 <= 3)
             {
                 //add mutated offspring to new population
                 FunTree mutated = selected.mutation();
                 nextGen[i+1] = mutated;
+                float mutatedFitness = mutated.getFitness(data);
+                if(mutatedFitness <= fittestVal)
+                {
+                    fittestVal = mutatedFitness;
+                    fittestTree.rootNode.replace(mutated.rootNode);
+                }
             }
             else
             {
                 //run tournament to get another tree and do crossover operation
                 //and add offspring to new population
-                FunTree mate = tournament(curGen, data);
+                FunTree mate = tournament(population, data);
                 FunTree child = selected.crossover(mate);
                 nextGen[i+1] = child;
+                float childFitness = child.getFitness(data);
+                if(childFitness <= fittestVal)
+                {
+                    fittestVal = childFitness;
+                    fittestTree.rootNode.replace(child.rootNode);
+                }
             }
         }
 
+        //set the population to the next gen
+        population = nextGen;
+
         // return the new generation
-        return nextGen;
+        return fittestTree;
     }
     
 }
