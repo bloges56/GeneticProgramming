@@ -50,29 +50,98 @@ public class Genetic {
         
         // reserve part of the data as "future data points"
         // generate 100 random, but valid trees in a array
+        FunTree[] population = new FunTree[100];
+        for(int i = 0; i < population.length; i++)
+        {
+            population[i] = new FunTree();
+        }
 
         // set float value fittest greater than selected value
+        FunTree fittestTree = getFittest(population, data);
+        float fittestVal = fittestTree.getFitness(data);
+
         // loop while fittest > some value
-        // get the next generation
-        // get the fittest in new generation
+        while(fittestVal >= 0.5)
+        {
+            // get the next generation
+            population = nextGen(population, data);
+            // get the fittest in new generation
+            fittestTree = getFittest(population, data);
+            fittestVal = fittestTree.getFitness(data);
+            System.out.println(fittestVal);
+        }
+        
+        System.out.println(fittestTree);
+        
 
         // test if our returned expression is "over-fitted"
     }
 
     // method to get fittest in given array of trees
+    private static FunTree getFittest(FunTree[] trees, List<Float[]> data)
+    {
+        float minVal = 0.f;
+        FunTree minTree = new FunTree();
+        float curFitness;
+        for(int i = 0; i < trees.length; i++)
+        {
+            curFitness = trees[i].getFitness(data);
+            if(curFitness <= minVal)
+            {
+                minTree.rootNode.replace(trees[i].rootNode);
+                minVal = curFitness;
+            }
+        }
+
+        return minTree;
+    }
 
     // method to run tournament selection, returning a tree
     // pick N random trees from list and return the fittest
+    private static FunTree tournament(FunTree[] trees, List<Float[]> data)
+    {
+        FunTree[] selectedTrees = new FunTree[5];
+        for(int i = 0; i < 5; i++)
+        {
+            int random = (int) Math.random() * trees.length;
+            selectedTrees[i] = trees[random];
+        }
+
+        return getFittest(selectedTrees, data);
+        
+    }
 
     // method to produce the next generation
-    // declare new population of trees
-    // loop new population >= current population or until current population is
-    // below certain level
-    // run tournament selection to get one tree
-    // if 30% chance
-    // add mutated offspring to new population
-    // else
-    // run tournament to get another tree and do crossover operation
-    // and add offspring to new population
-    // return the new generation
+    private static FunTree[] nextGen(FunTree[] curGen, List<Float[]> data)
+    {
+        // declare new population of trees
+        FunTree[] nextGen = new FunTree[curGen.length];
+        //loop until new population is fulled
+        for(int i = 0; i < nextGen.length; i+=2)
+        {
+            // run tournament selection to get one tree
+            FunTree selected = tournament(curGen, data);
+            nextGen[i] = selected;
+
+            // if 30% chance
+            if((int)Math.random() * 10 <= 3)
+            {
+                //add mutated offspring to new population
+                FunTree mutated = selected.mutation();
+                nextGen[i+1] = mutated;
+            }
+            else
+            {
+                //run tournament to get another tree and do crossover operation
+                //and add offspring to new population
+                FunTree mate = tournament(curGen, data);
+                FunTree child = selected.crossover(mate);
+                nextGen[i+1] = child;
+            }
+        }
+
+        // return the new generation
+        return nextGen;
+    }
+    
 }
