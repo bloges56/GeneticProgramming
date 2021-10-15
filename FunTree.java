@@ -11,7 +11,7 @@ public class FunTree
     private final int maxDepth = 5;
 
     //set range of constant for leaves
-    private final int constantRange = 5;
+    private final int constantRange = 4;
 
     //set range for selecting random node
     private final int randomNodeRange = 2;
@@ -23,7 +23,7 @@ public class FunTree
     private final int mutationDepth = 3;
 
     //chance to be independent var
-    private final int independentVarChance = 3;
+    private final int independentVarChance = 5;
 
     //pointer to root node
     Node rootNode;
