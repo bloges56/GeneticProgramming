@@ -55,7 +55,7 @@ public class Genetic {
         // generate 100 random, but valid trees in a array
        
         PriorityQueue<FunTree> population = new PriorityQueue<>(treeComparator);
-        for(int i = 0; i <100; i++)
+        for(int i = 0; i <1000; i++)
         {
             population.add(new FunTree());
         }

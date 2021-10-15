@@ -22,6 +22,9 @@ public class FunTree
     //declare mutation tree depth
     private final int mutationDepth = 3;
 
+    //chance to be independent var
+    private final int independentVarChance = 3;
+
     //pointer to root node
     Node rootNode;
 
@@ -94,7 +97,7 @@ public class FunTree
     {
         Node leafNode = new Node();
         //chance to be independent variable
-        if((int)(Math.random() * 5) == 0)
+        if((int)(Math.random() * independentVarChance) == 0)
         {
             leafNode.independentVar = true;
         }
