@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class FunTree
 {
     //static global array of operations
@@ -278,6 +280,19 @@ public class FunTree
         }
     }
 
+
+    public float getFitness(List<Float[]> data)
+    {
+        float sum = 0.f;
+        for(int i =0; i<data.size(); i++)
+        {
+            float actual = data.get(i)[1];
+            float evaluated = evaluate(data.get(i)[0]);
+            sum += Math.abs(actual - evaluated);
+        }
+
+        return sum;
+    }
     //fitness function
         //take the area of difference from given data
 

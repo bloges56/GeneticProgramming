@@ -18,6 +18,8 @@ public class Genetic {
         // FunTree mother = new FunTree();
         // FunTree child = father.crossover(mother);
         // System.out.println(father + "\n" + mother + "\n" + child);
+
+        // read in our data
         List<Float[]> data = new ArrayList<>();
         try{
             BufferedReader csvReader = new BufferedReader(new FileReader("./dataset1.csv"));
@@ -42,8 +44,10 @@ public class Genetic {
             System.out.println("data not found");
         }
 
-        // test.printTree();
-        // read in our data
+        FunTree test = new FunTree();
+        float fitness = test.getFitness(data);
+        System.out.println(fitness);
+        
         // reserve part of the data as "future data points"
         // generate 100 random, but valid trees in a array
 
@@ -55,27 +59,10 @@ public class Genetic {
         // test if our returned expression is "over-fitted"
     }
 
-    private static List<Float> getRowData(String line) {
-        List<Float> values = new ArrayList<Float>();
-        try (Scanner rowScanner = new Scanner(line)) {
-            rowScanner.useDelimiter(",");
-            while (rowScanner.hasNext()) {
-                String value = rowScanner.next();
-                if (value != "x" && value != "f(x)") {
-                    values.add(Float.parseFloat(value));
-                }
-            }
-        }
-        return values;
-    }
-
     // method to get fittest in given array of trees
 
     // method to run tournament selection, returning a tree
     // pick N random trees from list and return the fittest
-    // increment times generation lived
-    // if times reproduced > random(5)
-    // "kill it"
 
     // method to produce the next generation
     // declare new population of trees
