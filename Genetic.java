@@ -10,7 +10,7 @@ public class Genetic {
     //     }
     // };
 
-    private static int POPULATION_SIZE = 300;
+    private static int POPULATION_SIZE = 2000;
     private static int TOURNAMENT_SIZE = 3;
     public static void main(String[] args) {
         // FunTree test = new FunTree();
