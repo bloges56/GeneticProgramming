@@ -100,7 +100,7 @@ public class Genetic {
   
           return fittestTree;
       }
-    private static int TOURNAMENT_SIZE = 3;
+    private static int TOURNAMENT_SIZE = 2;
 
        // method to run tournament selection, returning a tree
     // pick N random trees from list and return the fittest
