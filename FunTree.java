@@ -17,7 +17,7 @@ public class FunTree
     private final int randomNodeRange = 3;
 
     //set starting point for random node
-    private final int randomNodeStart = 3;
+    private final int randomNodeStart = 4;
 
     //declare mutation tree depth
     private final int mutationDepth = 4;

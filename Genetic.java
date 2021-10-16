@@ -10,7 +10,7 @@ public class Genetic {
     //     }
     // };
 
-    private static int POPULATION_SIZE = 100;
+    private static int POPULATION_SIZE = 300;
     public static void main(String[] args) {
         // FunTree test = new FunTree();
         // System.out.println(test);
@@ -54,7 +54,7 @@ public class Genetic {
         
         FunTree.data = data;
         // reserve part of the data as "future data points"
-        // generate 100 random, but valid trees in a array
+        // generate random, but valid trees in an array
        
         FunTree[] generation = new FunTree[POPULATION_SIZE];
         for(int i = 0; i <POPULATION_SIZE; i++)
@@ -70,10 +70,11 @@ public class Genetic {
         while(fittestVal >= 0.5)
         {
             // get the fittest in new generation
-            nextGen(generation);
-            fittestTree = getFittest(generation);
+            FunTree[] nextGen = nextGen(generation);
+            fittestTree = getFittest(nextGen);
             fittestVal = fittestTree.getFitness();
             System.out.println(fittestVal);
+            deepCopy(generation, nextGen);  
         }
         
         System.out.println(fittestTree);
@@ -117,10 +118,10 @@ public class Genetic {
     }
 
     // method to produce the next generation and return the fittest in the generation
-    private static void nextGen(FunTree[] population)
+    private static FunTree[] nextGen(FunTree[] population)
     {
         // declare new population of trees
-        FunTree[] nextGen = new FunTree[100];
+        FunTree[] nextGen = new FunTree[POPULATION_SIZE];
 
         //loop until new population is fulled
         for(int i = 0; i < population.length; i++)
@@ -146,14 +147,14 @@ public class Genetic {
         }
 
         //set population to nextGen
-        deepCopy(population, nextGen);
+       return nextGen;
     }
 
     private static void deepCopy(FunTree[] current, FunTree[] next)
     {
         for(int i = 0; i <current.length; i++)
         {
-            current[i] = new FunTree(next[i]);
+            current[i] = next[i];
         }
     }
 }
