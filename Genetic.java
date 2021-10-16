@@ -75,7 +75,7 @@ public class Genetic {
             fittestTree = getFittest(nextGen);
             fittestVal = fittestTree.getFitness();
             System.out.println(fittestVal);
-            deepCopy(generation, nextGen);  
+            generation = nextGen.clone();  
         }
         
         System.out.println(fittestTree);
@@ -151,11 +151,11 @@ public class Genetic {
        return nextGen;
     }
 
-    private static void deepCopy(FunTree[] current, FunTree[] next)
-    {
-        for(int i = 0; i <current.length; i++)
-        {
-            current[i].rootNode.replace(next[i].rootNode);
-        }
-    }
+    // private static void deepCopy(FunTree[] current, FunTree[] next)
+    // {
+    //     for(int i = 0; i <current.length; i++)
+    //     {
+    //         current[i].rootNode.replace(next[i].rootNode);
+    //     }
+    // }
 }
