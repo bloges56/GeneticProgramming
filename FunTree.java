@@ -48,6 +48,14 @@ public class FunTree
         fitness = calculateFitness();
     }
 
+    //constructor for duplicating a FunTree
+    public FunTree(FunTree tree)
+    {
+        rootNode = new Node();
+        rootNode.replace(tree.rootNode);
+        fitness = tree.getFitness();
+    }
+
     //method to generate tree with random expression
     private void randomTree(Node current, int depth)
     {

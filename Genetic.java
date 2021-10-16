@@ -95,7 +95,7 @@ public class Genetic {
               float fitness = trees[i].getFitness();
               if(fitness < fittestValue)
               {
-                  fittestTree = new FunTree(trees[i].rootNode);
+                  fittestTree = new FunTree(trees[i]);
                   fittestValue = fitness;
               }
           }
@@ -113,7 +113,7 @@ public class Genetic {
         {
             int random = (int) (Math.random() * trees.length);
             
-            selected[i] = new FunTree(trees[random].rootNode);
+            selected[i] = new FunTree(trees[random]);
         }
         return getFittest(selected);
         
