@@ -70,13 +70,10 @@ public class Genetic {
         while(fittestVal >= 0.5)
         {
             // get the fittest in new generation
-            nextGen(generation);
+            generation = nextGen(generation);
             fittestTree = getFittest(generation);
             fittestVal = fittestTree.getFitness();
             System.out.println(fittestVal);
-            System.out.println(generation[0]);
-            System.out.println(generation[1]);
-            System.out.println(generation[2]);
         }
         
         System.out.println(fittestTree);
@@ -120,7 +117,7 @@ public class Genetic {
     }
 
     // method to produce the next generation and return the fittest in the generation
-    public static void nextGen(FunTree[] population)
+    public static FunTree[] nextGen(FunTree[] population)
     {
         // declare new population of trees
         FunTree[] nextGen = new FunTree[100];
@@ -149,6 +146,6 @@ public class Genetic {
         }
 
         //set population to nextGen
-         population = nextGen;
+         return nextGen;
     }
 }
