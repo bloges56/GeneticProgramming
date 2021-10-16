@@ -10,7 +10,8 @@ public class Genetic {
     //     }
     // };
 
-    private static int POPULATION_SIZE = 100;
+    private static int POPULATION_SIZE = 300;
+    private static int TOURNAMENT_SIZE = 3;
     public static void main(String[] args) {
         // FunTree test = new FunTree();
         // System.out.println(test);
@@ -100,7 +101,7 @@ public class Genetic {
   
           return fittestTree;
       }
-    private static int TOURNAMENT_SIZE = 10;
+   
 
        // method to run tournament selection, returning a tree
     // pick N random trees from list and return the fittest
