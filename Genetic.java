@@ -3,12 +3,12 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 
 public class Genetic {
-    private static Comparator<FunTree> treeComparator = new Comparator<FunTree>() {
-        @Override
-        public int compare(FunTree f1, FunTree f2) {
-            return (int) (f1.getFitness() - f2.getFitness());
-        }
-    };
+    // private static Comparator<FunTree> treeComparator = new Comparator<FunTree>() {
+    //     @Override
+    //     public int compare(FunTree f1, FunTree f2) {
+    //         return (int) (f1.getFitness() - f2.getFitness());
+    //     }
+    // };
 
     private static int POPULATION_SIZE = 100;
     public static void main(String[] args) {
@@ -70,7 +70,7 @@ public class Genetic {
         while(fittestVal >= 0.5)
         {
             // get the fittest in new generation
-            generation = nextGen(generation);
+            nextGen(generation);
             fittestTree = getFittest(generation);
             fittestVal = fittestTree.getFitness();
             System.out.println(fittestVal);
@@ -117,7 +117,7 @@ public class Genetic {
     }
 
     // method to produce the next generation and return the fittest in the generation
-    public static FunTree[] nextGen(FunTree[] population)
+    private static void nextGen(FunTree[] population)
     {
         // declare new population of trees
         FunTree[] nextGen = new FunTree[100];
@@ -146,6 +146,14 @@ public class Genetic {
         }
 
         //set population to nextGen
-         return nextGen;
+        deepCopy(population, nextGen);
+    }
+
+    private static void deepCopy(FunTree[] current, FunTree[] next)
+    {
+        for(int i = 0; i <current.length; i++)
+        {
+            current[i] = next[i];
+        }
     }
 }
