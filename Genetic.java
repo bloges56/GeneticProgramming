@@ -153,7 +153,7 @@ public class Genetic {
     {
         for(int i = 0; i <current.length; i++)
         {
-            current[i] = next[i];
+            current[i] = new FunTree(next[i]);
         }
     }
 }
