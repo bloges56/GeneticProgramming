@@ -74,6 +74,7 @@ public class Genetic {
             FunTree[] nextGen = nextGen(generation);
             fittestTree = getFittest(nextGen);
             fittestVal = fittestTree.getFitness();
+            System.out.println(fittestTree);
             System.out.println(fittestVal);
             generation = nextGen.clone();  
         }
