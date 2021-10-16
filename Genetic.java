@@ -3,12 +3,14 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 
 public class Genetic {
-    public static Comparator<FunTree> treeComparator = new Comparator<FunTree>() {
+    private static Comparator<FunTree> treeComparator = new Comparator<FunTree>() {
         @Override
         public int compare(FunTree f1, FunTree f2) {
             return (int) (f1.getFitness() - f2.getFitness());
         }
     };
+
+    private static int POPULATION_SIZE = 100;
     public static void main(String[] args) {
         // FunTree test = new FunTree();
         // System.out.println(test);
@@ -54,24 +56,27 @@ public class Genetic {
         // reserve part of the data as "future data points"
         // generate 100 random, but valid trees in a array
        
-        ArrayList<FunTree> population = new ArrayList<FunTree>();
-        for(int i = 0; i <300; i++)
+        FunTree[] generation = new FunTree[POPULATION_SIZE];
+        for(int i = 0; i <POPULATION_SIZE; i++)
         {
-            population.add(new FunTree());
+            generation[i] = new FunTree();
         }
 
         // set float value fittest greater than selected value
-        FunTree fittestTree = getFittest(population);
+        FunTree fittestTree = getFittest(generation);
         float fittestVal = fittestTree.getFitness();
 
         // loop while fittest > some value
         while(fittestVal >= 0.5)
         {
             // get the fittest in new generation
-            population = nextGen(population);
-            fittestTree = getFittest(population);
+            nextGen(generation);
+            fittestTree = getFittest(generation);
             fittestVal = fittestTree.getFitness();
             System.out.println(fittestVal);
+            System.out.println(generation[0]);
+            System.out.println(generation[1]);
+            System.out.println(generation[2]);
         }
         
         System.out.println(fittestTree);
@@ -80,48 +85,48 @@ public class Genetic {
         // test if our returned expression is "over-fitted"
     }
 
-    //method to get fittest in given array of trees
-    private static FunTree getFittest(ArrayList<FunTree> trees)
-    {
-        FunTree fittestTree = trees.get(0);
-        float fittestValue = fittestTree.getFitness();
-        for(int i = 0; i < trees.size(); i++)
-        {
-            float fitness = trees.get(i).getFitness();
-            if(fitness < fittestValue)
-            {
-                fittestTree = trees.get(i);
-                fittestValue = fittestTree.getFitness();
-            }
-        }
-
-        return fittestTree;
-    }
-
+      //method to get fittest in given array of trees
+      private static FunTree getFittest(FunTree[] trees)
+      {
+          FunTree fittestTree = new FunTree(trees[0].rootNode);
+          float fittestValue = fittestTree.getFitness();
+          for(int i = 1; i < trees.length; i++)
+          {
+              float fitness = trees[i].getFitness();
+              if(fitness < fittestValue)
+              {
+                  fittestTree = new FunTree(trees[i].rootNode);
+                  fittestValue = fitness;
+              }
+          }
+  
+          return fittestTree;
+      }
     private static int TOURNAMENT_SIZE = 3;
-    // method to run tournament selection, returning a tree
+
+       // method to run tournament selection, returning a tree
     // pick N random trees from list and return the fittest
-    private static FunTree tournament(ArrayList<FunTree> trees)
+    private static FunTree tournament(FunTree[] trees)
     {
-        Set<FunTree> selectedTrees = new HashSet<FunTree>();
-        while(selectedTrees.size() <= TOURNAMENT_SIZE)
+        FunTree[] selected = new FunTree[TOURNAMENT_SIZE];
+        for(int i = 0; i < TOURNAMENT_SIZE; i++)
         {
-            int random = (int) Math.random() * trees.size();
-            selectedTrees.add(trees.get(random));
+            int random = (int) (Math.random() * trees.length);
+            
+            selected[i] = new FunTree(trees[random].rootNode);
         }
-        ArrayList<FunTree> selectedArr = new ArrayList<>(selectedTrees);
-        return getFittest(selectedArr);
+        return getFittest(selected);
         
     }
 
     // method to produce the next generation and return the fittest in the generation
-    private static ArrayList<FunTree> nextGen(ArrayList<FunTree> population)
+    public static void nextGen(FunTree[] population)
     {
         // declare new population of trees
-        ArrayList<FunTree> nextGen = new ArrayList<FunTree>();
+        FunTree[] nextGen = new FunTree[100];
 
         //loop until new population is fulled
-        for(int i = 0; i < nextGen.size(); i++)
+        for(int i = 0; i < population.length; i++)
         {
             // run tournament selection to get one tree
             FunTree selected = tournament(population);
@@ -132,19 +137,18 @@ public class Genetic {
                 //and add offspring to new population
                 FunTree mate = tournament(population);
                 FunTree child = selected.crossover(mate);
-                nextGen.add(child);
+                nextGen[i] = child;
                 
             }
             else
             {
                 //add mutated offspring to new population
                 FunTree mutated = selected.mutation();
-                nextGen.add(mutated);
+                nextGen[i] = mutated;
             }
         }
 
-        //return the nextGen
-        return nextGen;
+        //set population to nextGen
+         population = nextGen;
     }
-    
 }

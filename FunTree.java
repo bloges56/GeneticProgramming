@@ -1,4 +1,4 @@
-import java.util.List;
+import java.util.*;
 
 public class FunTree
 {
@@ -8,7 +8,7 @@ public class FunTree
     public static List<Float[]> data;
 
     //set depth max depth range
-    private final int maxDepth = 5;
+    private final int maxDepth = 2;
 
     //set range of constant for leaves
     private final int constantRange = 4;
@@ -25,6 +25,10 @@ public class FunTree
     //chance to be independent var
     private final int independentVarChance = 5;
 
+   
+
+    private float fitness;
+
     //pointer to root node
     Node rootNode;
 
@@ -33,6 +37,7 @@ public class FunTree
     {
         rootNode = createRandomOp();
         randomTree(rootNode, 0);
+        fitness = calculateFitness();
     }
 
     //constructor with given root node
@@ -40,6 +45,7 @@ public class FunTree
     {
         rootNode = new Node();
         rootNode.replace(newRoot);
+        fitness = calculateFitness();
     }
 
     //method to generate tree with random expression
@@ -284,7 +290,7 @@ public class FunTree
 
     //fitness function
     //take the area of difference from given data
-    public float getFitness()
+    private float calculateFitness()
     {
         float sum = 0.f;
         for(int i =0; i<data.size(); i++)
@@ -297,13 +303,18 @@ public class FunTree
         return sum;
     }
 
-    public boolean equals(FunTree tree)
+    public float getFitness()
     {
-        return tree.getFitness() == getFitness();
+        return fitness;
     }
 
-    public float HashCode()
-    {
-        return getFitness();
-    }
+    // public boolean equals(FunTree tree)
+    // {
+    //     return tree.getFitness() == getFitness();
+    // }
+
+    // public float HashCode()
+    // {
+    //     return getFitness();
+    // }
 }
