@@ -85,14 +85,14 @@ public class Genetic {
       //method to get fittest in given array of trees
       private static FunTree getFittest(FunTree[] trees)
       {
-          FunTree fittestTree = new FunTree(trees[0].rootNode);
+          FunTree fittestTree = trees[0];
           float fittestValue = fittestTree.getFitness();
           for(int i = 1; i < trees.length; i++)
           {
               float fitness = trees[i].getFitness();
               if(fitness < fittestValue)
               {
-                  fittestTree = new FunTree(trees[i]);
+                  fittestTree = trees[i];
                   fittestValue = fitness;
               }
           }
@@ -110,7 +110,7 @@ public class Genetic {
         {
             int random = (int) (Math.random() * trees.length);
             
-            selected[i] = new FunTree(trees[random]);
+            selected[i] = trees[random];
         }
         return getFittest(selected);
         

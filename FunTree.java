@@ -8,26 +8,22 @@ public class FunTree
     public static List<Float[]> data;
 
     //set depth max depth range
-    private final int maxDepth = 2;
+    private final int maxDepth = 7;
 
     //set range of constant for leaves
     private final int constantRange = 4;
 
     //set range for selecting random node
-    private final int randomNodeRange = 2;
+    private final int randomNodeRange = 3;
 
     //set starting point for random node
-    private final int randomNodeStart = 2;
+    private final int randomNodeStart = 3;
 
     //declare mutation tree depth
-    private final int mutationDepth = 3;
+    private final int mutationDepth = 4;
 
     //chance to be independent var
     private final int independentVarChance = 5;
-
-   
-
-    private float fitness;
 
     //pointer to root node
     Node rootNode;
@@ -37,7 +33,6 @@ public class FunTree
     {
         rootNode = createRandomOp();
         randomTree(rootNode, 0);
-        fitness = calculateFitness();
     }
 
     //constructor with given root node
@@ -45,7 +40,6 @@ public class FunTree
     {
         rootNode = new Node();
         rootNode.replace(newRoot);
-        fitness = calculateFitness();
     }
 
     //constructor for duplicating a FunTree
@@ -53,7 +47,6 @@ public class FunTree
     {
         rootNode = new Node();
         rootNode.replace(tree.rootNode);
-        fitness = tree.getFitness();
     }
 
     //method to generate tree with random expression
@@ -298,7 +291,12 @@ public class FunTree
 
     //fitness function
     //take the area of difference from given data
-    private float calculateFitness()
+    // private float calculateFitness()
+    // {
+        
+    // }
+
+    public float getFitness()
     {
         float sum = 0.f;
         for(int i =0; i<data.size(); i++)
@@ -309,11 +307,6 @@ public class FunTree
         }
 
         return sum;
-    }
-
-    public float getFitness()
-    {
-        return fitness;
     }
 
     // public boolean equals(FunTree tree)
