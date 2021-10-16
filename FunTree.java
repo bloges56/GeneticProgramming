@@ -8,22 +8,22 @@ public class FunTree
     public static List<Float[]> data;
 
     //set depth max depth range
-    private final int maxDepth = 7;
+    private final int maxDepth = 5;
 
     //set range of constant for leaves
     private final int constantRange = 4;
 
     //set range for selecting random node
-    private final int randomNodeRange = 3;
+    private final int randomNodeRange = 5;
 
     //set starting point for random node
-    private final int randomNodeStart = 4;
+    private final int randomNodeStart = 2;
 
     //declare mutation tree depth
-    private final int mutationDepth = 4;
+    private final int mutationDepth = 3;
 
     //chance to be independent var
-    private final int independentVarChance = 5;
+    private final int independentVarChance = 3;
 
     //pointer to root node
     Node rootNode;

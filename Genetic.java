@@ -10,7 +10,7 @@ public class Genetic {
     //     }
     // };
 
-    private static int POPULATION_SIZE = 300;
+    private static int POPULATION_SIZE = 100;
     public static void main(String[] args) {
         // FunTree test = new FunTree();
         // System.out.println(test);
@@ -100,7 +100,7 @@ public class Genetic {
   
           return fittestTree;
       }
-    private static int TOURNAMENT_SIZE = 2;
+    private static int TOURNAMENT_SIZE = 3;
 
        // method to run tournament selection, returning a tree
     // pick N random trees from list and return the fittest
@@ -129,7 +129,7 @@ public class Genetic {
             // run tournament selection to get one tree
             FunTree selected = tournament(population);
             // if 30% chance
-            if((int)Math.random() * 10 <= 3)
+            if((int) (Math.random() * 10) <= 3)
             {
                 //run tournament to get another tree and do crossover operation
                 //and add offspring to new population
