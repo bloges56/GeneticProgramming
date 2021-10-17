@@ -257,36 +257,59 @@ public class FunTree
     }
 
 
-        
-
-    //method to return a randomly selected node to be used by mutation and crossover
     public Node getRandomNode()
     {
-        int decrementer = (int)((Math.random() * randomNodeRange) + randomNodeStart);
-        return getRandomNodeUtil(decrementer, rootNode);
+        return getRandomNodeUtil(rootNode, 0);
     }
 
-
-    //helper method to return a randomly selected node to be used by mutation and crossover
-    private Node getRandomNodeUtil(int decrementer, Node current)
+    public Node getRandomNodeUtil(Node current, int depth)
     {
-        if(decrementer == 0)
+        if(current.operation == null)
         {
             return current;
         }
-        if(current.operation == null)
+        if((int) (Math.random() * 10) < 2 * depth)
         {
             return current;
         }
         if((int)Math.random() * 2 == 0)
         {
-            return getRandomNodeUtil(decrementer--, current.left);
+            return getRandomNodeUtil(current.left, depth++);
         }
         else
         {
-            return getRandomNodeUtil(decrementer--, current.right);
+            return getRandomNodeUtil(current.right, depth++);
         }
     }
+
+    // //method to return a randomly selected node to be used by mutation and crossover
+    // public Node getRandomNode()
+    // {
+    //     int decrementer = (int)((Math.random() * randomNodeRange) + randomNodeStart);
+    //     return getRandomNodeUtil(decrementer, rootNode);
+    // }
+
+
+    // //helper method to return a randomly selected node to be used by mutation and crossover
+    // private Node getRandomNodeUtil(int decrementer, Node current)
+    // {
+    //     if(decrementer == 0)
+    //     {
+    //         return current;
+    //     }
+    //     if(current.operation == null)
+    //     {
+    //         return current;
+    //     }
+    //     if((int)Math.random() * 2 == 0)
+    //     {
+    //         return getRandomNodeUtil(decrementer--, current.left);
+    //     }
+    //     else
+    //     {
+    //         return getRandomNodeUtil(decrementer--, current.right);
+    //     }
+    // }
 
 
     //fitness function
