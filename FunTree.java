@@ -8,7 +8,7 @@ public class FunTree
     public static List<Float[]> data;
 
     //set depth max depth range
-    private final int maxDepth = 5;
+    private final int maxDepth = 4;
 
     //set range of constant for leaves
     private final int constantRange = 4;
@@ -20,7 +20,7 @@ public class FunTree
     private final int randomNodeStart = 2;
 
     //declare mutation tree depth
-    private final int mutationDepth = 3;
+    private final int mutationDepth = 4;
 
     //chance to be independent var
     private final int independentVarChance = 3;
