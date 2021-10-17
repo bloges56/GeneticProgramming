@@ -11,12 +11,12 @@ public class Genetic {
     // };
 
     private static int POPULATION_SIZE = 4000;
-    private static int TOURNAMENT_SIZE = 3;
+    private static int TOURNAMENT_SIZE = 10;
     public static void main(String[] args) {
-        // FunTree test = new FunTree();
-        // System.out.println(test);
-        // // System.out.println(test.evaluate(1));
-        // // System.out.println(test.getRandomNode());
+        FunTree test = new FunTree();
+        System.out.println(test);
+       // System.out.println(test.evaluate(1));
+        System.out.println(test.getRandomNode());
 
         // FunTree mutated = test.mutation();
         // System.out.println(test);
@@ -131,7 +131,7 @@ public class Genetic {
             // run tournament selection to get one tree
             FunTree selected = tournament(population);
             selected.selected++;
-            if(selected.selected>=TOURNAMENT_SIZE / 2 && !selected.reproduced)
+            if(selected.selected>=TOURNAMENT_SIZE / TOURNAMENT_SIZE && !selected.reproduced)
             {
                 nextGen[i] = selected;
                 selected.reproduced = true;
