@@ -13,10 +13,10 @@ public class Genetic {
     private static int POPULATION_SIZE = 4000;
     private static int TOURNAMENT_SIZE = 10;
     public static void main(String[] args) {
-        FunTree test = new FunTree();
-        System.out.println(test);
-       // System.out.println(test.evaluate(1));
-        System.out.println(test.getRandomNode());
+    //     FunTree test = new FunTree();
+    //     System.out.println(test);
+    //    // System.out.println(test.evaluate(1));
+    //     System.out.println(test.getRandomNode());
 
         // FunTree mutated = test.mutation();
         // System.out.println(test);
@@ -29,20 +29,21 @@ public class Genetic {
         // System.out.println(father + "\n" + mother + "\n" + child);
 
         // read in our data
-        List<Float[]> data = new ArrayList<>();
+        Float[][] data = new Float[25000][2];
         try{
             BufferedReader csvReader = new BufferedReader(new FileReader("./dataset1.csv"));
             String row = csvReader.readLine();
+            int i = 0;
             while (row != null) {
                 String[] rowS = row.split(",");
                 if(!rowS[0].equals("x"))
                 {
-                    Float[] rowF = new Float[2];
-                    for(int i = 0; i < rowS.length; i++)
+                    for(int j = 0; j < rowS.length; j++)
                     {
-                        rowF[i] = Float.parseFloat(rowS[i]);
+                        data[i][j] = Float.parseFloat(rowS[j]);
+                        
                     }
-                    data.add(rowF);
+                    i++;
                 }
                 row=csvReader.readLine();
             }
