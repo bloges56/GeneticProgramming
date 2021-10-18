@@ -222,20 +222,28 @@ public class FunTree
     {
         //Tree[] crosssover (Tree crossover)
         //pick random node on this tree
-        FunTree father = new FunTree(rootNode);
-        Node randomNodeP1 = father.getRandomNode();
+        FunTree child1 = new FunTree(rootNode);
+        Node randomNodeP1 = child1.getRandomNode();
 
-        //create new tree A and set root node to randomly selected node from this tree
-        // FunTree subTreeP1 = new FunTree(randomNodeP1);
 
         //create new tree B and set root node to given tree root node
-        FunTree child = new FunTree(mother.rootNode);
+        FunTree child2 = new FunTree(mother.rootNode);
         
 
         //pick random node of B and set it to the A root Node
-        Node randomNodeP2 = child.getRandomNode();
+        Node randomNodeP2 = child1.getRandomNode();
+        Node temp = new Node();
+        temp.replace(randomNodeP2);
+
         randomNodeP2.replace(randomNodeP1);
-        return child;
+        randomNodeP1.replace(temp);
+
+        if(child1.getFitness() < child2.getFitness())
+        {
+            return child1;
+        }
+
+        return child2;
     }
     
 
