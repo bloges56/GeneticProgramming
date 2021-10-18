@@ -149,10 +149,12 @@ public class Genetic {
             // run tournament selection to get one tree
             FunTree selected = tournament(population);
 
-            //while the selected depth is too high, try getting another one
-            while(selected.getDepth() > 5 || selected.getSize() > 12)
+            int tries = 0;
+            //favor less complex solutions
+            while(tries <= 3 && (selected.getDepth() > 5 || selected.getSize() > 12))
             {
                 selected = tournament(population);
+                tries++;
             }
             //if 30% chance
             if((int) (Math.random() * 10) <= 3)
