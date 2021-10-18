@@ -146,11 +146,11 @@ public class Genetic {
         {
             // run tournament selection to get one tree
             FunTree selected = tournament(population);
-            if((int) (Math.random() * 10) == 0)
-            {
-                nextGen[i] = selected;
-                continue;
-            }
+            // if((int) (Math.random() * 10) == 0)
+            // {
+            //     nextGen[i] = selected;
+            //     continue;
+            // }
             // if 30% chance
             if((int) (Math.random() * 10) <= 3)
             {
