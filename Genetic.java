@@ -14,9 +14,9 @@ public class Genetic {
     private static int POPULATION_SIZE = 500;
     private static int TOURNAMENT_SIZE = 5;
     public static void main(String[] args) {
-        //  FunTree test = new FunTree();
-        //  System.out.println(test);
-        //  System.out.println(test.getDepth());
+         FunTree test = new FunTree();
+         System.out.println(test);
+         System.out.println(test.getSize());
     //    // System.out.println(test.evaluate(1));
     //     System.out.println(test.getRandomNode());
 
@@ -84,7 +84,7 @@ public class Genetic {
         int numGens = 0;
 
        // loop while fittest > some value
-        while(fittestVal >= 20 && numGens <= 1000)
+        while(fittestVal >= 0.5 && numGens <= 1000)
         {
             // get the fittest in new generation
             FunTree[] nextGen = nextGen(generation);
@@ -150,11 +150,11 @@ public class Genetic {
             FunTree selected = tournament(population);
 
             //while the selected depth is too high, try getting another one
-            // if(selected.getDepth() > 5)
-            // {
-            //     selected = tournament(population);
-            // }
-            // if 30% chance
+            while(selected.getDepth() > 5 || selected.getSize() > 12)
+            {
+                selected = tournament(population);
+            }
+            //if 30% chance
             if((int) (Math.random() * 10) <= 3)
             {
                 //run tournament to get another tree and do crossover operation

@@ -8,7 +8,7 @@ public class FunTree
     public static Float[][] data;
 
     //set depth max depth range
-    private final int maxDepth = 10;
+    private final int maxDepth = 4;
 
     //set range of constant for leaves
     private final int constantRange = 10;
@@ -291,35 +291,6 @@ public class FunTree
         }
     }
 
-    // //method to return a randomly selected node to be used by mutation and crossover
-    // public Node getRandomNode()
-    // {
-    //     int decrementer = (int)((Math.random() * randomNodeRange) + randomNodeStart);
-    //     return getRandomNodeUtil(decrementer, rootNode);
-    // }
-
-
-    // //helper method to return a randomly selected node to be used by mutation and crossover
-    // private Node getRandomNodeUtil(int decrementer, Node current)
-    // {
-    //     if(decrementer == 0)
-    //     {
-    //         return current;
-    //     }
-    //     if(current.operation == null)
-    //     {
-    //         return current;
-    //     }
-    //     if((int)Math.random() * 2 == 0)
-    //     {
-    //         return getRandomNodeUtil(decrementer--, current.left);
-    //     }
-    //     else
-    //     {
-    //         return getRandomNodeUtil(decrementer--, current.right);
-    //     }
-    // }
-
     public int getDepth()
     {
         return getDepthUtil(rootNode);
@@ -339,6 +310,21 @@ public class FunTree
             return depthLeft;
         }
         return depthRight;
+    }
+
+    public int getSize()
+    {
+        return getSizeUtil(rootNode);
+    }
+
+    private int getSizeUtil(Node current)
+    {
+        if(current == null)
+        {
+            return 0;
+        }
+
+        return 1 + getSizeUtil(current.left) + getSizeUtil(current.right);
     }
 
     //fitness function
