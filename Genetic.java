@@ -149,7 +149,7 @@ public class Genetic {
             FunTree selected = tournament(population);
 
             //while the selected depth is too high, try getting another one
-            while(selected.getDepth() > 5)
+            if(selected.getDepth() > 5)
             {
                 selected = tournament(population);
             }
