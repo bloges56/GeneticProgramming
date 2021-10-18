@@ -26,7 +26,7 @@ public class FunTree
     private final int independentVarChance = 2;
 
     //track the number of times this tree has been selected
-    public int selected;
+    // public int selected;
 
     //track if this tree has been reproduced
     public boolean reproduced;
@@ -39,7 +39,6 @@ public class FunTree
     {
         rootNode = createRandomOp();
         randomTree(rootNode, 0);
-        selected = 0;
         reproduced = false;
     }
 
@@ -48,7 +47,6 @@ public class FunTree
     {
         rootNode = new Node();
         rootNode.replace(newRoot);
-        selected = 0;
         reproduced = false;
     }
 
@@ -57,7 +55,6 @@ public class FunTree
     {
         rootNode = new Node();
         rootNode.replace(tree.rootNode);
-        selected = 0;
         reproduced = false;
     }
 

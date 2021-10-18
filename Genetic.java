@@ -146,7 +146,6 @@ public class Genetic {
         {
             // run tournament selection to get one tree
             FunTree selected = tournament(population);
-            selected.selected++;
             if((int) (Math.random() * 10) == 0 && !selected.reproduced)
             {
                 nextGen[i] = selected;
@@ -159,7 +158,6 @@ public class Genetic {
                 //run tournament to get another tree and do crossover operation
                 //and add offspring to new population
                 FunTree mate = tournament(population);
-                mate.selected++;
                 FunTree child = selected.crossover(mate);
                 nextGen[i] = child;
                 
