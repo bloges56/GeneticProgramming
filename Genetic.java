@@ -10,6 +10,7 @@ public class Genetic {
     //     }
     // };
 
+    private static int DATA_SIZE = 1000;
     private static int POPULATION_SIZE = 2000;
     private static int TOURNAMENT_SIZE = 5;
     public static void main(String[] args) {
@@ -54,7 +55,19 @@ public class Genetic {
             System.out.println("data not found");
         }
         
-        FunTree.data = data;
+        //crossover add fitter of two children
+
+
+        Float[][] selectedData = new Float[DATA_SIZE][2];
+        for(int i = 0; i < DATA_SIZE; i++ )
+        {
+            for(int j=0; j<selectedData[i].length; j++)
+            {
+                selectedData[i][j] = data[i][j];
+            }
+        }
+
+        FunTree.data = selectedData;
         // reserve part of the data as "future data points"
         // generate random, but valid trees in an array
        
