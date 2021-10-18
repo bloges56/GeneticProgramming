@@ -11,7 +11,7 @@ public class FunTree
     private final int maxDepth = 4;
 
     //set range of constant for leaves
-    private final int constantRange = 5;
+    private final int constantRange = 10;
 
     //set range for selecting random node
     private final int randomNodeRange = 5;
@@ -122,13 +122,7 @@ public class FunTree
         }
         else
         {
-            //reduce chances of 0
-            int temp = (int)(Math.random() * range);
-            if(temp == 0)
-            {
-                temp = (int)(Math.random() * range);
-            }
-            leafNode.constant = temp;
+            leafNode.constant = (int)(Math.random() * range - range / 2);
         }
         return leafNode;
     }
