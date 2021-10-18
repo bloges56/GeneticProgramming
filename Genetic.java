@@ -83,7 +83,7 @@ public class Genetic {
         int numGens = 0;
 
         // loop while fittest > some value
-        while(fittestVal >= 0.5 || numGens >= 100)
+        while(fittestVal >= 0.5 || numGens <= 1000)
         {
             // get the fittest in new generation
             FunTree[] nextGen = nextGen(generation);
