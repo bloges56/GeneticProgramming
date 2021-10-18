@@ -84,7 +84,7 @@ public class Genetic {
         int numGens = 0;
 
        // loop while fittest > some value
-        while(fittestVal >= 0.5 && numGens <= 1000)
+        while(fittestVal >= 20 && numGens <= 1000)
         {
             // get the fittest in new generation
             FunTree[] nextGen = nextGen(generation);
@@ -95,8 +95,9 @@ public class Genetic {
             generation = nextGen;  
             numGens++;
         }
-        
+        FunTree.data = data;
         System.out.println(fittestTree);
+        System.out.println(fittestTree.getFitness());
         
 
         // test if our returned expression is "over-fitted"
