@@ -29,7 +29,7 @@ public class FunTree
     // public int selected;
 
     //track if this tree has been reproduced
-    public boolean reproduced;
+    // public boolean reproduced;
 
     //pointer to root node
     Node rootNode;
@@ -39,7 +39,6 @@ public class FunTree
     {
         rootNode = createRandomOp();
         randomTree(rootNode, 0);
-        reproduced = false;
     }
 
     //constructor with given root node
@@ -47,7 +46,6 @@ public class FunTree
     {
         rootNode = new Node();
         rootNode.replace(newRoot);
-        reproduced = false;
     }
 
     //constructor for duplicating a FunTree
@@ -55,7 +53,6 @@ public class FunTree
     {
         rootNode = new Node();
         rootNode.replace(tree.rootNode);
-        reproduced = false;
     }
 
     //method to generate tree with random expression
