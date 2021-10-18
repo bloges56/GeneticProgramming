@@ -8,7 +8,7 @@ public class FunTree
     public static Float[][] data;
 
     //set depth max depth range
-    private final int maxDepth = 3;
+    private final int maxDepth = 10;
 
     //set range of constant for leaves
     private final int constantRange = 10;
@@ -267,26 +267,27 @@ public class FunTree
 
     public Node getRandomNode()
     {
-        return getRandomNodeUtil(rootNode, 0);
+        int depth = getDepth();
+        return getRandomNodeUtil(rootNode, 0, depth);
     }
 
-    public Node getRandomNodeUtil(Node current, int depth)
+    public Node getRandomNodeUtil(Node current, int depth, int treeDepth)
     {
         if(current.operation == null)
         {
             return current;
         }
-        if((int) (Math.random() * maxDepth) < 2 * depth)
+        if((int) (Math.random() * treeDepth) < 2 * depth)
         {
             return current;
         }
         if((int)(Math.random() * 2) == 0)
         {
-            return getRandomNodeUtil(current.left, depth++);
+            return getRandomNodeUtil(current.left, depth++, treeDepth);
         }
         else
         {
-            return getRandomNodeUtil(current.right, depth++);
+            return getRandomNodeUtil(current.right, depth++, treeDepth);
         }
     }
 
@@ -319,6 +320,26 @@ public class FunTree
     //     }
     // }
 
+    public int getDepth()
+    {
+        return getDepthUtil(rootNode);
+    }
+
+    private int getDepthUtil(Node current)
+    {
+        if(current.operation == null)
+        {
+            return 0;
+        }
+
+        int depthLeft = 1 + getDepthUtil(current.left);
+        int depthRight = 1 + getDepthUtil(current.right);
+        if(depthLeft > depthRight)
+        {
+            return depthLeft;
+        }
+        return depthRight;
+    }
 
     //fitness function
     //take the area of difference from given data

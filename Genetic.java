@@ -14,8 +14,9 @@ public class Genetic {
     private static int POPULATION_SIZE = 300;
     private static int TOURNAMENT_SIZE = 3;
     public static void main(String[] args) {
-    //     FunTree test = new FunTree();
-    //     System.out.println(test);
+        //  FunTree test = new FunTree();
+        //  System.out.println(test);
+        //  System.out.println(test.getDepth());
     //    // System.out.println(test.evaluate(1));
     //     System.out.println(test.getRandomNode());
 
@@ -82,8 +83,8 @@ public class Genetic {
         float fittestVal = fittestTree.getFitness();
         int numGens = 0;
 
-        // loop while fittest > some value
-        while(fittestVal >= 0.5 || numGens <= 1000)
+       // loop while fittest > some value
+        while(fittestVal >= 0.5 && numGens <= 1000)
         {
             // get the fittest in new generation
             FunTree[] nextGen = nextGen(generation);
@@ -146,11 +147,6 @@ public class Genetic {
         {
             // run tournament selection to get one tree
             FunTree selected = tournament(population);
-            // if((int) (Math.random() * 10) == 0)
-            // {
-            //     nextGen[i] = selected;
-            //     continue;
-            // }
             // if 30% chance
             if((int) (Math.random() * 10) <= 3)
             {
