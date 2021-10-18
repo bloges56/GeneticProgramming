@@ -277,7 +277,7 @@ public class FunTree
         {
             return current;
         }
-        if((int) (Math.random() * treeDepth) < 2 * depth)
+        if((int)(Math.random() * 2) == 0 && depth != 0)
         {
             return current;
         }
