@@ -108,7 +108,7 @@ public class FunTree
         }
         else
         {
-            leafNode.constant = (int)(Math.random() * range - range / 2);
+            leafNode.constant = (float)(Math.random() * range - range / 2.f);
         }
         return leafNode;
     }
@@ -174,7 +174,7 @@ public class FunTree
         }
 
         //if leaf constant, return constant
-        return (float) current.constant;
+        return current.constant;
     }
 
     //method to make a type of computation given a string
