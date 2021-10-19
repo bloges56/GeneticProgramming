@@ -321,11 +321,15 @@ public class FunTree
 
     private int getDepthUtil(Node current)
     {
+        if(current == null)
+        {
+            return -1;
+        }
+
         if(current.operation == null)
         {
             return 0;
         }
-
         int depthLeft = 1 + getDepthUtil(current.left);
         int depthRight = 1 + getDepthUtil(current.right);
         if(depthLeft > depthRight)
