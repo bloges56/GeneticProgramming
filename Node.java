@@ -14,7 +14,7 @@ public class Node {
     public boolean independentVar = false;
 
     //constant int member variable
-    public float constant;
+    public int constant;
 
     //constructor for a root Node
     public Node()
