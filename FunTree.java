@@ -288,11 +288,8 @@ public class FunTree
 
         if(count < getSizeUtil(current.left))
         {
-            System.out.println("left");
             return getRandomNodeUtil(current.left, count);
         }
-
-        System.out.println("right");
         return getRandomNodeUtil(current.right, count - getSizeUtil(current.left));
     }
 
