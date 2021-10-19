@@ -116,7 +116,7 @@ public class FunTree
         }
         else
         {
-            leafNode.constant = (int)(Math.random() * range - range / 2);
+            leafNode.constant = (int)(Math.random() * (range + 1) - range / 2);
         }
         return leafNode;
     }
