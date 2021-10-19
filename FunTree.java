@@ -93,7 +93,7 @@ public class FunTree
     //method to return a random node
     private Node createRandomNode()
     {
-        if((int)(Math.random() * 2) == 0)
+        if((int)(Math.random() * 3) == 0)
         {
             return createRandomLeaf(constantRange);
         }
