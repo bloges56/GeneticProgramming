@@ -1,5 +1,3 @@
-import java.util.*;
-
 public class FunTree
 {
     //static global array of operations
@@ -12,12 +10,6 @@ public class FunTree
 
     //set range of constant for leaves
     private final int constantRange = 10;
-
-    //set range for selecting random node
-    private final int randomNodeRange = 5;
-
-    //set starting point for random node
-    private final int randomNodeStart = 2;
 
     //declare mutation tree depth
     private final int mutationDepth = 2;
@@ -116,7 +108,7 @@ public class FunTree
         }
         else
         {
-            leafNode.constant = (int)(Math.random() * (range + 1) - range / 2);
+            leafNode.constant = (int)(Math.random() * range - range / 2);
         }
         return leafNode;
     }
@@ -277,7 +269,7 @@ public class FunTree
         {
             return current;
         }
-        if((int)(Math.random() * treeDepth) < depth)
+        if((int)(Math.random() * treeDepth) < depth * 2)
         {
             return current;
         }
