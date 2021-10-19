@@ -11,7 +11,7 @@ public class FunTree
     private final int maxDepth = 4;
 
     //set range of constant for leaves
-    private final int constantRange = 2;
+    private final int constantRange = 10;
 
     //set range for selecting random node
     private final int randomNodeRange = 5;
