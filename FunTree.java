@@ -268,7 +268,7 @@ public class FunTree
 
     public Node getRandomNode()
     {
-        int count = (int) (Math.random() * getSize());
+        int count = (int) Math.round(Math.random() * getSize());
         return getRandomNodeUtil(rootNode, count);
     }
 
