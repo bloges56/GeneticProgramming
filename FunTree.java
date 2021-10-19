@@ -1,28 +1,27 @@
-import java.util.List;
-
 public class FunTree
 {
     //static global array of operations
-    public static String[] operations = {"add", "sub", "mul", "div"};
+    private static String[] operations = {"add", "sub", "mul", "div"};
+
+    public static Float[][] data;
 
     //set depth max depth range
-    private final int maxDepth = 8;
+    private final int maxDepth = 4;
 
     //set range of constant for leaves
-    private final int constantRange = 5;
-
-    //set range for selecting random node
-    private final int randomNodeRange = 3;
-
-    //set starting point for random node
-    private final int randomNodeStart = 2;
+    private final int constantRange = 10;
 
     //declare mutation tree depth
-    private final int mutationDepth = 3;
+    private final int mutationDepth = 4;
 
+    //chance to be independent var
+    private final int independentVarChance = 2;
 
-    //times reproduced member
-    public int reproducedCount;
+    //track the number of times this tree has been selected
+    public int selected;
+
+    //track if this tree has been reproduced
+    public boolean reproduced;
 
     //pointer to root node
     Node rootNode;
@@ -39,6 +38,13 @@ public class FunTree
     {
         rootNode = new Node();
         rootNode.replace(newRoot);
+    }
+
+    //constructor for duplicating a FunTree
+    public FunTree(FunTree tree)
+    {
+        rootNode = new Node();
+        rootNode.replace(tree.rootNode);
     }
 
     //method to generate tree with random expression
@@ -96,19 +102,13 @@ public class FunTree
     {
         Node leafNode = new Node();
         //chance to be independent variable
-        if((int)(Math.random() * 5) == 0)
+        if((int)(Math.random() * independentVarChance) == 0)
         {
             leafNode.independentVar = true;
         }
         else
         {
-            //reduce chances of 0
-            int temp = (int)(Math.random() * range);
-            if(temp == 0)
-            {
-                temp = (int)(Math.random() * range);
-            }
-            leafNode.constant = temp;
+            leafNode.constant = (int)(Math.random() * range - range / 2);
         }
         return leafNode;
     }
@@ -208,20 +208,28 @@ public class FunTree
     {
         //Tree[] crosssover (Tree crossover)
         //pick random node on this tree
-        FunTree father = new FunTree(rootNode);
-        Node randomNodeP1 = father.getRandomNode();
+        FunTree child1 = new FunTree(rootNode);
+        Node randomNodeP1 = child1.getRandomNode();
 
-        //create new tree A and set root node to randomly selected node from this tree
-        // FunTree subTreeP1 = new FunTree(randomNodeP1);
 
         //create new tree B and set root node to given tree root node
-        FunTree child = new FunTree(mother.rootNode);
+        FunTree child2 = new FunTree(mother.rootNode);
         
 
         //pick random node of B and set it to the A root Node
-        Node randomNodeP2 = child.getRandomNode();
+        Node randomNodeP2 = child2.getRandomNode();
+        Node temp = new Node();
+        temp.replace(randomNodeP2);
+
         randomNodeP2.replace(randomNodeP1);
-        return child;
+        randomNodeP1.replace(temp);
+
+        if(child1.getFitness() < child2.getFitness())
+        {
+            return child1;
+        }
+
+        return child2;
     }
     
 
@@ -249,51 +257,89 @@ public class FunTree
     }
 
 
-        
-
-    //method to return a randomly selected node to be used by mutation and crossover
     public Node getRandomNode()
     {
-        int decrementer = (int)((Math.random() * randomNodeRange) + randomNodeStart);
-        return getRandomNodeUtil(decrementer, rootNode);
+        int depth = getDepth();
+        return getRandomNodeUtil(rootNode, 0, depth);
     }
 
-
-    //helper method to return a randomly selected node to be used by mutation and crossover
-    private Node getRandomNodeUtil(int decrementer, Node current)
+    public Node getRandomNodeUtil(Node current, int depth, int treeDepth)
     {
-        if(decrementer == 0)
-        {
-            return current;
-        }
         if(current.operation == null)
         {
             return current;
         }
-        if((int)Math.random() * 2 == 0)
+        if((int)(Math.random() * 10) <= 2 * treeDepth)
         {
-            return getRandomNodeUtil(decrementer--, current.left);
+            return current;
+        }
+        if((int)(Math.random() * 2) == 0)
+        {
+            return getRandomNodeUtil(current.left, depth++, treeDepth);
         }
         else
         {
-            return getRandomNodeUtil(decrementer--, current.right);
+            return getRandomNodeUtil(current.right, depth++, treeDepth);
         }
     }
 
+    public int getDepth()
+    {
+        return getDepthUtil(rootNode);
+    }
 
-    public float getFitness(List<Float[]> data)
+    private int getDepthUtil(Node current)
+    {
+        if(current.operation == null)
+        {
+            return 0;
+        }
+
+        int depthLeft = 1 + getDepthUtil(current.left);
+        int depthRight = 1 + getDepthUtil(current.right);
+        if(depthLeft > depthRight)
+        {
+            return depthLeft;
+        }
+        return depthRight;
+    }
+
+    public int getSize()
+    {
+        return getSizeUtil(rootNode);
+    }
+
+    private int getSizeUtil(Node current)
+    {
+        if(current == null)
+        {
+            return 0;
+        }
+
+        return 1 + getSizeUtil(current.left) + getSizeUtil(current.right);
+    }
+
+    //fitness function
+    public float getFitness()
     {
         float sum = 0.f;
-        for(int i =0; i<data.size(); i++)
+        for(int i =0; i<data.length; i++)
         {
-            float actual = data.get(i)[1];
-            float evaluated = evaluate(data.get(i)[0]);
+            float actual = data[i][1];
+            float evaluated = evaluate(data[i][0]);
             sum += Math.abs(actual - evaluated);
         }
 
         return sum;
     }
-    //fitness function
-        //take the area of difference from given data
 
+    // public boolean equals(FunTree tree)
+    // {
+    //     return tree.getFitness() == getFitness();
+    // }
+
+    // public float HashCode()
+    // {
+    //     return getFitness();
+    // }
 }
