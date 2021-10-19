@@ -11,7 +11,7 @@ public class Genetic {
 
     private static int DATA_SIZE = 1000;
     private static int POPULATION_SIZE = 500;
-    private static int TOURNAMENT_SIZE = 3;
+    private static int TOURNAMENT_SIZE = 2;
     public static void main(String[] args) {
         //  System.out.println(test);
         //  System.out.println(test.getSize());
@@ -86,7 +86,7 @@ public class Genetic {
     //     // System.out.println(mutated.evaluate(-2.f));
     //     // System.out.println("\n" + mutated.evaluate(1));
        
-        FunTree.data = testData;
+        //FunTree.data = testData;
         FunTree[] generation = new FunTree[POPULATION_SIZE];
         for(int i = 0; i <POPULATION_SIZE; i++)
         {
