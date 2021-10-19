@@ -13,8 +13,8 @@ public class Node {
     //independent boolean member variable
     public boolean independentVar = false;
 
-    //constant int member variable
-    public int constant;
+    //constant float member variable
+    public float constant;
 
     //constructor for a root Node
     public Node()
