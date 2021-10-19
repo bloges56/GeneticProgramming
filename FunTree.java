@@ -6,13 +6,13 @@ public class FunTree
     public static Float[][] data;
 
     //set depth max depth range
-    private final int maxDepth = 4;
+    private final int maxDepth = 2;
 
     //set range of constant for leaves
     private final int constantRange = 10;
 
     //declare mutation tree depth
-    private final int mutationDepth = 4;
+    private final int mutationDepth = 2;
 
     //chance to be independent var
     private final int independentVarChance = 2;
