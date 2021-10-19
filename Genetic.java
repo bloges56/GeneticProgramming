@@ -164,7 +164,7 @@ public class Genetic {
 
             int tries = 0;
             //favor less complex solutions
-            while(tries <= 5 && (selected.getDepth() > 5 || selected.getSize() > 12))
+            while(tries <= 10 && (selected.getDepth() > 5 || selected.getSize() > 12))
             {
                 selected = tournament(population);
                 tries++;
