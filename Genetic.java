@@ -150,13 +150,13 @@ public class Genetic {
             // run tournament selection to get one tree
             FunTree selected = tournament(population);
 
-            // int tries = 0;
-            // //favor less complex solutions
-            // while(tries <= 3 && (selected.getDepth() > 5 || selected.getSize() > 12))
-            // {
-            //     selected = tournament(population);
-            //     tries++;
-            // }
+            int tries = 0;
+            //favor less complex solutions
+            while(tries <= 10 && (selected.getDepth() > 5 || selected.getSize() > 12))
+            {
+                selected = tournament(population);
+                tries++;
+            }
             // selected.selected++;
             // if(selected.selected >= TOURNAMENT_SIZE && !selected.reproduced)
             // {
