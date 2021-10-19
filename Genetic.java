@@ -86,7 +86,7 @@ public class Genetic {
     //     // System.out.println(mutated.evaluate(-2.f));
     //     // System.out.println("\n" + mutated.evaluate(1));
        
-        FunTree.data = testData;
+        //FunTree.data = testData;
         FunTree[] generation = new FunTree[POPULATION_SIZE];
         for(int i = 0; i <POPULATION_SIZE; i++)
         {
@@ -98,7 +98,7 @@ public class Genetic {
         float fittestVal = fittestTree.getFitness();
 
     //    // loop while fittest > some value
-        while(fittestVal >= 5)
+        while(fittestVal >= 0.01)
         {
             // get the fittest in new generation
             FunTree[] nextGen = nextGen(generation);
@@ -108,7 +108,7 @@ public class Genetic {
             System.out.println(fittestVal);
             generation = nextGen;  
         }
-        FunTree.data = data;
+       // FunTree.data = data;
         System.out.println(fittestTree);
         System.out.println(fittestTree.getFitness());
         
