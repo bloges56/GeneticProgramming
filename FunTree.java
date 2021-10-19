@@ -9,7 +9,7 @@ public class FunTree
     private final int maxDepth = 4;
 
     //set range of constant for leaves
-    private final int constantRange = 3;
+    private final int constantRange = 10;
 
     //declare mutation tree depth
     private final int mutationDepth = 4;
