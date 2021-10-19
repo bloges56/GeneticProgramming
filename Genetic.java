@@ -67,39 +67,39 @@ public class Genetic {
         // reserve part of the data as "future data points"
         // generate random, but valid trees in an array
 
-         FunTree test = new FunTree();
-        FunTree mutated = test.mutation();
-        System.out.println(test);
-        System.out.println("\n" + mutated);
-        System.out.println(mutated.evaluate(-2.f));
+        //  FunTree test = new FunTree();
+        // FunTree mutated = test.mutation();
+        // System.out.println(test);
+        // System.out.println("\n" + mutated);
+        // System.out.println(mutated.evaluate(-2.f));
         // System.out.println("\n" + mutated.evaluate(1));
        
-    //     FunTree[] generation = new FunTree[POPULATION_SIZE];
-    //     for(int i = 0; i <POPULATION_SIZE; i++)
-    //     {
-    //         generation[i] = new FunTree();
-    //     }
+        FunTree[] generation = new FunTree[POPULATION_SIZE];
+        for(int i = 0; i <POPULATION_SIZE; i++)
+        {
+            generation[i] = new FunTree();
+        }
 
-    //     // set float value fittest greater than selected value
-    //     FunTree fittestTree = getFittest(generation);
-    //     float fittestVal = fittestTree.getFitness();
-    //     int numGens = 0;
+        // set float value fittest greater than selected value
+        FunTree fittestTree = getFittest(generation);
+        float fittestVal = fittestTree.getFitness();
+        int numGens = 0;
 
-    //    // loop while fittest > some value
-    //     while(fittestVal >= 0.5 && numGens <= 1000)
-    //     {
-    //         // get the fittest in new generation
-    //         FunTree[] nextGen = nextGen(generation);
-    //         fittestTree = getFittest(nextGen);
-    //         fittestVal = fittestTree.getFitness();
-    //         System.out.println(fittestTree);
-    //         System.out.println(fittestVal);
-    //         generation = nextGen;  
-    //         numGens++;
-    //     }
-    //     FunTree.data = data;
-    //     System.out.println(fittestTree);
-    //     System.out.println(fittestTree.getFitness());
+       // loop while fittest > some value
+        while(fittestVal >= 0.5 && numGens <= 1000)
+        {
+            // get the fittest in new generation
+            FunTree[] nextGen = nextGen(generation);
+            fittestTree = getFittest(nextGen);
+            fittestVal = fittestTree.getFitness();
+            System.out.println(fittestTree);
+            System.out.println(fittestVal);
+            generation = nextGen;  
+            numGens++;
+        }
+        FunTree.data = data;
+        System.out.println(fittestTree);
+        System.out.println(fittestTree.getFitness());
         
 
         // test if our returned expression is "over-fitted"
