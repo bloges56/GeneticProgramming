@@ -273,7 +273,7 @@ public class FunTree
         {
             return current;
         }
-        if((int)(Math.random() * 2) == 0)
+        if(Math.round(Math.random()) == 0)
         {
             return getRandomNodeUtil(current.right, depth++, treeDepth);
         }
