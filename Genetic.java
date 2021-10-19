@@ -14,9 +14,9 @@ public class Genetic {
     private static int POPULATION_SIZE = 500;
     private static int TOURNAMENT_SIZE = 5;
     public static void main(String[] args) {
-         FunTree test = new FunTree();
-         System.out.println(test);
-         System.out.println(test.getSize());
+        //  FunTree test = new FunTree();
+        //  System.out.println(test);
+        //  System.out.println(test.getSize());
     //    // System.out.println(test.evaluate(1));
     //     System.out.println(test.getRandomNode());
 
@@ -24,11 +24,6 @@ public class Genetic {
         // System.out.println(test);
         // System.out.println("\n" + mutated);
         // System.out.println("\n" + mutated.evaluate(1));
-
-        // FunTree father = new FunTree();
-        // FunTree mother = new FunTree();
-        // FunTree child = father.crossover(mother);
-        // System.out.println(father + "\n" + mother + "\n" + child);
 
         // read in our data
         Float[][] data = new Float[25000][2];
@@ -69,6 +64,11 @@ public class Genetic {
         }
 
         FunTree.data = selectedData;
+
+        // FunTree father = new FunTree();
+        // FunTree mother = new FunTree();
+        // FunTree child = father.crossover(mother);
+        // System.out.println(father + "\n" + mother + "\n" + child);
         // reserve part of the data as "future data points"
         // generate random, but valid trees in an array
        

@@ -225,7 +225,7 @@ public class FunTree
         
 
         //pick random node of B and set it to the A root Node
-        Node randomNodeP2 = child1.getRandomNode();
+        Node randomNodeP2 = child2.getRandomNode();
         Node temp = new Node();
         temp.replace(randomNodeP2);
 
