@@ -12,7 +12,7 @@ public class FunTree
     private final int constantRange = 10;
 
     //declare mutation tree depth
-    private final int mutationDepth = 2;
+    private final int mutationDepth = 4;
 
     //chance to be independent var
     private final int independentVarChance = 2;
