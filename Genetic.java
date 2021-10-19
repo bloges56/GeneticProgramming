@@ -11,7 +11,7 @@ public class Genetic {
 
     private static int DATA_SIZE = 1000;
     private static int POPULATION_SIZE = 500;
-    private static int TOURNAMENT_SIZE = 2;
+    private static int TOURNAMENT_SIZE = 4;
     public static void main(String[] args) {
         //  System.out.println(test);
         //  System.out.println(test.getSize());
@@ -82,7 +82,7 @@ public class Genetic {
         float fittestVal = fittestTree.getFitness();
 
        // loop while fittest > some value
-        while(fittestVal >= 17.9)
+        while(fittestVal >= 5)
         {
             // get the fittest in new generation
             FunTree[] nextGen = nextGen(generation);
