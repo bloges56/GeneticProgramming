@@ -17,8 +17,6 @@ public class Genetic {
         //  System.out.println(test.getSize());
     //    // System.out.println(test.evaluate(1));
     //     System.out.println(test.getRandomNode());
-
-
         // read in our data
         Float[][] data = new Float[25000][2];
         try{
@@ -84,7 +82,7 @@ public class Genetic {
         float fittestVal = fittestTree.getFitness();
 
        // loop while fittest > some value
-        while(fittestVal >= 0.5)
+        while(fittestVal >= 17.9)
         {
             // get the fittest in new generation
             FunTree[] nextGen = nextGen(generation);
