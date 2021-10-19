@@ -180,26 +180,32 @@ public class FunTree
     //method to make a type of computation given a string
     private float doOperation(String op, float left, float right)
     {
+        if(op.equals("div"))
+        {
+            if(right == 0)
+            {
+                return 1;
+            }
+
+            return left / right;
+        }
+
         if(op.equals("add"))
         {
             return right + left;
         }
 
-        else if(op.equals("sub"))
+        if(op.equals("sub"))
         {
             return left - right;
         }
-        else if(op.equals("mul"))
+
+        if(op.equals("mul"))
         {
             return right * left;
         }
 
-        if(right == 0)
-        {
-            return 0;
-        }
-
-        return left / right;
+        return 1;
     }
 
     
