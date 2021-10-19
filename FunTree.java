@@ -26,10 +26,10 @@ public class FunTree
     private final int independentVarChance = 2;
 
     //track the number of times this tree has been selected
-    // public int selected;
+    public int selected;
 
     //track if this tree has been reproduced
-    // public boolean reproduced;
+    public boolean reproduced;
 
     //pointer to root node
     Node rootNode;
