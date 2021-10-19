@@ -363,6 +363,6 @@ public class FunTree
             sum += Math.abs(actual - evaluated);
         }
 
-        return sum/data.length;
+        return sum;
     }
 }
