@@ -161,7 +161,7 @@ public class Genetic {
             {
                 nextGen[i] = selected;
                 selected.reproduced = true;
-                i++;
+                continue;
             }
             //if 30% chance
             if((int) (Math.random() * 10) <= 3)
