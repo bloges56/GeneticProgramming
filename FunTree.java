@@ -269,7 +269,7 @@ public class FunTree
         {
             return getRandomNodeUtil(rootNode, 0, treeDepth);
         }
-        if((int)(Math.random() * treeDepth) < depth * 2)
+        if((int)(Math.random() * 10) < 2 * depth)
         {
             return current;
         }
