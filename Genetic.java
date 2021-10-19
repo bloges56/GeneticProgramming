@@ -18,6 +18,20 @@ public class Genetic {
     //    // System.out.println(test.evaluate(1));
     //     System.out.println(test.getRandomNode());
         // read in our data
+        Float[][] testData = {{0.f,0.5f}, {1.f, 1.5f} , {2.f,4.5f}, {3.f,9.5f}};
+        // Node testNode = new Node();
+        // Node testNodeLeft = new Node();
+        // Node testNodeRight = new Node();
+        // testNode.operation = "mul";
+        // testNodeLeft.independentVar = true;
+        // testNodeRight.independentVar = true;
+        // testNode.left = testNodeLeft;
+        // testNode.right = testNodeRight;
+        // FunTree testTree = new FunTree(testNode);
+        // FunTree.data = testData;
+        // System.out.println(testTree);
+        // System.out.println(testTree.getFitness());
+
         Float[][] data = new Float[25000][2];
         try{
             BufferedReader csvReader = new BufferedReader(new FileReader("./dataset1.csv"));
@@ -43,7 +57,7 @@ public class Genetic {
             System.out.println("data not found");
         }
         
-        //crossover add fitter of two children
+    //     //crossover add fitter of two children
 
 
         Float[][] selectedData = new Float[DATA_SIZE][2];
@@ -57,31 +71,33 @@ public class Genetic {
 
         FunTree.data = selectedData;
 
-        // FunTree father = new FunTree();
-        // FunTree mother = new FunTree();
-        // FunTree child = father.crossover(mother);
-        // System.out.println(father + "\n" + mother + "\n" + child);
-        // reserve part of the data as "future data points"
-        // generate random, but valid trees in an array
 
-        //  FunTree test = new FunTree();
-        // FunTree mutated = test.mutation();
-        // System.out.println(test);
-        // System.out.println("\n" + mutated);
-        // System.out.println(mutated.evaluate(-2.f));
-        // System.out.println("\n" + mutated.evaluate(1));
+    //     // FunTree father = new FunTree();
+    //     // FunTree mother = new FunTree();
+    //     // FunTree child = father.crossover(mother);
+    //     // System.out.println(father + "\n" + mother + "\n" + child);
+    //     // reserve part of the data as "future data points"
+    //     // generate random, but valid trees in an array
+
+    //     //  FunTree test = new FunTree();
+    //     // FunTree mutated = test.mutation();
+    //     // System.out.println(test);
+    //     // System.out.println("\n" + mutated);
+    //     // System.out.println(mutated.evaluate(-2.f));
+    //     // System.out.println("\n" + mutated.evaluate(1));
        
+        FunTree.data = testData;
         FunTree[] generation = new FunTree[POPULATION_SIZE];
         for(int i = 0; i <POPULATION_SIZE; i++)
         {
             generation[i] = new FunTree();
         }
 
-        // set float value fittest greater than selected value
+    //     // set float value fittest greater than selected value
         FunTree fittestTree = getFittest(generation);
         float fittestVal = fittestTree.getFitness();
 
-       // loop while fittest > some value
+    //    // loop while fittest > some value
         while(fittestVal >= 5)
         {
             // get the fittest in new generation
@@ -97,8 +113,8 @@ public class Genetic {
         System.out.println(fittestTree.getFitness());
         
 
-        // test if our returned expression is "over-fitted"
-    }
+    //     // test if our returned expression is "over-fitted"
+     }
 
       //method to get fittest in given array of trees
       private static FunTree getFittest(FunTree[] trees)
@@ -115,7 +131,7 @@ public class Genetic {
               }
           }
   
-          return fittestTree;
+         return fittestTree;
       }
    
 
