@@ -82,10 +82,9 @@ public class Genetic {
         // set float value fittest greater than selected value
         FunTree fittestTree = getFittest(generation);
         float fittestVal = fittestTree.getFitness();
-        int numGens = 0;
 
        // loop while fittest > some value
-        while(fittestVal >= 0.5 && numGens <= 1000)
+        while(fittestVal >= 0.5)
         {
             // get the fittest in new generation
             FunTree[] nextGen = nextGen(generation);
@@ -94,7 +93,6 @@ public class Genetic {
             System.out.println(fittestTree);
             System.out.println(fittestVal);
             generation = nextGen;  
-            numGens++;
         }
         FunTree.data = data;
         System.out.println(fittestTree);
