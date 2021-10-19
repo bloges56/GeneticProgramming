@@ -270,26 +270,54 @@ public class FunTree
 
     public Node getRandomNode()
     {
-        int depth = getDepth();
-        return getRandomNodeUtil(rootNode, 0, depth);
+        int count = (int) (Math.random() * getSize());
+        return getRandomNodeUtil(rootNode, count);
     }
 
-    public Node getRandomNodeUtil(Node current, int depth, int treeDepth)
+    private Node getRandomNodeUtil(Node current, int count)
     {
-        if(current.operation == null)
+        if(current == null)
+        {
+            return getRandomNode();
+        }
+
+        if(count == getSizeUtil(current))
         {
             return current;
         }
-        if((int)(Math.random() * 10) <= 2 * treeDepth)
+
+        if(count < getSizeUtil(current.left))
         {
-            return current;
+            System.out.println("left");
+            return getRandomNodeUtil(current.left, count);
         }
-        if(Math.round(Math.random()) == 0)
-        {
-            return getRandomNodeUtil(current.right, depth++, treeDepth);
-        }
-        return getRandomNodeUtil(current.left, depth++, treeDepth);
+
+        System.out.println("right");
+        return getRandomNodeUtil(current.right, count - getSizeUtil(current.left));
     }
+
+    // public Node getRandomNode()
+    // {
+    //     int depth = getDepth();
+    //     return getRandomNodeUtil(rootNode, 0, depth);
+    // }
+
+    // public Node getRandomNodeUtil(Node current, int depth, int treeDepth)
+    // {
+    //     if(current.operation == null)
+    //     {
+    //         return current;
+    //     }
+    //     if((int)(Math.random() * 10) <= 2 * treeDepth)
+    //     {
+    //         return current;
+    //     }
+    //     if(Math.round(Math.random()) == 0)
+    //     {
+    //         return getRandomNodeUtil(current.right, depth++, treeDepth);
+    //     }
+    //     return getRandomNodeUtil(current.left, depth++, treeDepth);
+    // }
 
     public int getDepth()
     {
