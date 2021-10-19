@@ -64,7 +64,7 @@ public class FunTree
         //set left side
 
         //if leaf
-        if((int)(Math.random() * maxDepth) <= depth + 1)
+        if((int)(Math.random() * maxDepth) <= depth)
         {
             current.right = createRandomLeaf(constantRange);
         }
@@ -78,7 +78,7 @@ public class FunTree
         //set right side
 
         //if leaf
-         if((int)(Math.random() * maxDepth) <= depth + 1)
+         if((int)(Math.random() * maxDepth) <= depth)
          {
              current.left = createRandomLeaf(constantRange);
          }
