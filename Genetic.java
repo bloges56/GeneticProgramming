@@ -153,20 +153,20 @@ public class Genetic {
                 selected = tournament(population);
                 tries++;
             }
-            // selected.selected++;
-            // if(selected.selected >= TOURNAMENT_SIZE && !selected.reproduced)
-            // {
-            //     nextGen[i] = selected;
-            //     selected.reproduced = true;
-            //     continue;
-            // }
+            selected.selected++;
+            if(selected.selected >= TOURNAMENT_SIZE && !selected.reproduced)
+            {
+                nextGen[i] = selected;
+                selected.reproduced = true;
+                continue;
+            }
             // //if 30% chance
             if((int) (Math.random() * 10) <= 3)
             {
                 //run tournament to get another tree and do crossover operation
                 //and add offspring to new population
                 FunTree mate = tournament(population);
-                // mate.selected++;
+                mate.selected++;
                 FunTree child = selected.crossover(mate);
                 nextGen[i] = child;
                 
