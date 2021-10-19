@@ -61,13 +61,13 @@ public class FunTree
         //if leaf
         if((int)(Math.random() * maxDepth) <= depth + 1)
         {
-            current.left = createRandomLeaf(constantRange);
+            current.right = createRandomLeaf(constantRange);
         }
         //if operation, recurse
         else
         {
-            current.left = createRandomOp();
-            randomTree(current.left, ++depth);
+            current.right = createRandomOp();
+            randomTree(current.right, ++depth);
         }
 
         //set right side
@@ -75,13 +75,13 @@ public class FunTree
         //if leaf
          if((int)(Math.random() * maxDepth) <= depth + 1)
          {
-             current.right = createRandomLeaf(constantRange);
+             current.left = createRandomLeaf(constantRange);
          }
          //if operation, recurse
          else
          {
-             current.right = createRandomOp();
-             randomTree(current.right, ++depth);
+             current.left = createRandomOp();
+             randomTree(current.left, ++depth);
          }
     }
 
