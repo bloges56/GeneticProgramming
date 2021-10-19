@@ -29,7 +29,7 @@ public class FunTree
     //constructor
     public FunTree()
     {
-        rootNode = createRandomOp();
+        rootNode = createRandomNode();
         randomTree(rootNode, 0);
     }
 
@@ -54,6 +54,11 @@ public class FunTree
         if(current == null)
         {
             current = createRandomLeaf(constantRange);
+        }
+
+        if(current.operation == null)
+        {
+            return;
         }
 
         //set left side
