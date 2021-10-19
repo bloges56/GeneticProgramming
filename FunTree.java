@@ -30,7 +30,7 @@ public class FunTree
     public FunTree()
     {
         rootNode = createRandomOp();
-        int depth = (int)(Math.random() * maxDepth);
+        int depth = (int) Math.round(Math.random() * maxDepth);
         randomTree(rootNode, depth);
     }
 
@@ -52,14 +52,14 @@ public class FunTree
     private void randomTree(Node current, int depth)
     {
        //if no starting point is given, just return a constant 
-        if(depth == 0)
+        if(Math.round(Math.random() * depth) == 0)
         {
             current = createRandomLeaf(constantRange);
         }
-
+        current = createRandomOp();
         //set left side
-        randomTree(current.right, (int) (Math.random() * depth--));
-        randomTree(current.left, (int) (Math.random() * depth--));
+        randomTree(current.right, depth--);
+        randomTree(current.left,  depth--);
         // //if leaf
         // if((int)(Math.random() * maxDepth) <= depth)
         // {
