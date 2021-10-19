@@ -196,7 +196,7 @@ public class FunTree
 
         if(right == 0)
         {
-            return left;
+            return 1;
         }
 
         return left / right;
