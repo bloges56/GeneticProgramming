@@ -18,7 +18,7 @@ public class Genetic {
     //    // System.out.println(test.evaluate(1));
     //     System.out.println(test.getRandomNode());
         // read in our data
-        Float[][] testData = {{0.f,0.5f}, {1.f, 1.5f} , {2.f,4.5f}, {3.f,9.5f}};
+        Float[][] testData = {{0.f,0.f}, {1.f, 1.f} , {2.f,4.f}, {3.f,9.f}};
         // Node testNode = new Node();
         // Node testNodeLeft = new Node();
         // Node testNodeRight = new Node();
@@ -86,7 +86,7 @@ public class Genetic {
     //     // System.out.println(mutated.evaluate(-2.f));
     //     // System.out.println("\n" + mutated.evaluate(1));
        
-       // FunTree.data = testData;
+        FunTree.data = testData;
         FunTree[] generation = new FunTree[POPULATION_SIZE];
         for(int i = 0; i <POPULATION_SIZE; i++)
         {
