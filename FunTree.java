@@ -55,6 +55,7 @@ public class FunTree
         if(Math.round(Math.random() * depth) == 0)
         {
             current = createRandomLeaf(constantRange);
+            return;
         }
         current = createRandomOp();
         //set left side
