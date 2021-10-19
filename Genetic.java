@@ -18,7 +18,7 @@ public class Genetic {
     //    // System.out.println(test.evaluate(1));
     //     System.out.println(test.getRandomNode());
         // read in our data
-        Float[][] testData = {{0.f,0.f}, {1.f, 1.f} , {2.f,4.f}, {3.f,9.f}};
+        Float[][] testData = {{0.f,0.f}, {1.f, 1.f} , {2.f,2.f}, {3.f,3.f}};
         // Node testNode = new Node();
         // Node testNodeLeft = new Node();
         // Node testNodeRight = new Node();
