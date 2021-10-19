@@ -30,7 +30,8 @@ public class FunTree
     public FunTree()
     {
         rootNode = createRandomOp();
-        randomTree(rootNode, 0);
+        int depth = (int)(Math.random() * maxDepth);
+        randomTree(rootNode, depth);
     }
 
     //constructor with given root node
@@ -51,43 +52,39 @@ public class FunTree
     private void randomTree(Node current, int depth)
     {
        //if no starting point is given, just return a constant 
-        if(current == null)
+        if(depth == 0)
         {
             current = createRandomLeaf(constantRange);
         }
 
-        if(current.operation == null)
-        {
-            return;
-        }
-
         //set left side
+        randomTree(current.right, (int) (Math.random() * depth--));
+        randomTree(current.left, (int) (Math.random() * depth--));
+        // //if leaf
+        // if((int)(Math.random() * maxDepth) <= depth)
+        // {
+        //     current.right = createRandomLeaf(constantRange);
+        // }
+        // //if operation, recurse
+        // else
+        // {
+        //     current.right = createRandomOp();
+        //     randomTree(current.right, ++depth);
+        // }
 
-        //if leaf
-        if((int)(Math.random() * maxDepth) <= depth)
-        {
-            current.right = createRandomLeaf(constantRange);
-        }
-        //if operation, recurse
-        else
-        {
-            current.right = createRandomOp();
-            randomTree(current.right, ++depth);
-        }
+        // //set right side
 
-        //set right side
-
-        //if leaf
-         if((int)(Math.random() * maxDepth) <= depth)
-         {
-             current.left = createRandomLeaf(constantRange);
-         }
-         //if operation, recurse
-         else
-         {
-             current.left = createRandomOp();
-             randomTree(current.left, ++depth);
-         }
+        // //if leaf
+        //  if((int)(Math.random() * maxDepth) <= depth)
+        //  {
+        //      current.left = createRandomLeaf(constantRange);
+        //  }
+        //  //if operation, recurse
+        //  else
+        //  {
+        //      current.left = createRandomOp();
+        //      randomTree(current.left, ++depth);
+        //  }
     }
 
     //method to return a random node
