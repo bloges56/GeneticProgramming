@@ -29,7 +29,7 @@ public class FunTree
     //constructor
     public FunTree()
     {
-        rootNode = createRandomNode();
+        rootNode = createRandomOp();
         randomTree(rootNode, 0);
     }
 
@@ -340,14 +340,4 @@ public class FunTree
 
         return sum;
     }
-
-    // public boolean equals(FunTree tree)
-    // {
-    //     return tree.getFitness() == getFitness();
-    // }
-
-    // public float HashCode()
-    // {
-    //     return getFitness();
-    // }
 }
