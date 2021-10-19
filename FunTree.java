@@ -182,7 +182,7 @@ public class FunTree
     {
         if(op.equals("div"))
         {
-            if(right == 0)
+            if(right == 0.f)
             {
                 return 1;
             }
