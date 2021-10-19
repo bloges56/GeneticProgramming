@@ -108,7 +108,7 @@ public class FunTree
         }
         else
         {
-            leafNode.constant = (float)(Math.random() * range - range / 2);
+            leafNode.constant = Math.round((float)(Math.random() * range - range / 2) * 2) / 2.f;
         }
         return leafNode;
     }
