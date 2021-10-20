@@ -5,7 +5,7 @@ public class Genetic {
 
     private static int DATA_SIZE = 500;
     private static int POPULATION_SIZE = 10000;
-    private static int TOURNAMENT_SIZE = 5;
+    private static int TOURNAMENT_SIZE = 10;
     public static void main(String[] args) {
     // read in our data
 
@@ -162,7 +162,7 @@ public class Genetic {
 
             int tries = 0;
             //favor less complex solutions
-            while(tries <= 12 && (selected.getDepth() > 8 || selected.getSize() > 30))
+            while(tries <= 20 && (selected.getDepth() > 8 || selected.getSize() > 30))
             {
                 selected = tournament(population);
                 tries++;
