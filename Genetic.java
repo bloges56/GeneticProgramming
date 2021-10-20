@@ -4,11 +4,11 @@ import java.io.FileReader;
 public class Genetic {
 
     private static int DATA_SIZE = 500;
-    private static int POPULATION_SIZE = 5000;
-    private static int TOURNAMENT_SIZE = 3;
+    private static int POPULATION_SIZE = 2000;
+    private static int TOURNAMENT_SIZE = 5;
     public static void main(String[] args) {
     // read in our data
-    
+
         Float[][] data = new Float[25000][4];
         try{
             BufferedReader csvReader = new BufferedReader(new FileReader("./dataset2.csv"));
