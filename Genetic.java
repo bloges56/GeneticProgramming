@@ -50,7 +50,9 @@ public class Genetic {
          // reserve part of the data as "future data points"
          // generate random, but valid trees in an array
 
-       
+        FunTree[] fittestTrees = new FunTree[10];
+       for(int runs = 0; runs < 10; runs++)
+       {
         FunTree[] generation = new FunTree[POPULATION_SIZE];
         for(int i = 0; i <POPULATION_SIZE; i++)
         {
@@ -73,12 +75,37 @@ public class Genetic {
             generation = nextGen;  
         }
 
+        fittestTrees[runs] = fittestTree;
+       }
+        
+
         // test if our returned expression is "over-fitted"
         FunTree.data = data;
         System.out.println(fittestTree);
         System.out.println(fittestTree.getFitness());
         
         
+    }
+
+    private static FunTree getSmalles(FunTree[] trees)
+    {
+        FunTree smallestTree = trees[0];
+        int smallestDepth = trees[0].getDepth();
+        for(int i = 1; i < trees.length; i++)
+        {
+            int depth = trees[i].getDepth();
+            if(depth < smallestDepth)
+            {
+                smallestTree = trees[i];
+                smallestDepth = depth;
+            }
+            else if(depth == smallestDepth)
+            {
+                
+            }
+        }
+  
+          return fittestTree;
     }
 
       //method to get fittest in given array of trees
