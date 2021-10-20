@@ -82,7 +82,7 @@ public class FunTree
     {
         Node leafNode = new Node();
         //chance to be independent variable
-        if(Math.round(Math.random()) == 0)
+        if((int)(Math.random() * 10) <= 7)
         {
             leafNode.independentVar = true;
             int var = (int)(Math.random() * 3);
