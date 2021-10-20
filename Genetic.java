@@ -175,7 +175,7 @@ public class Genetic {
             // run tournament selection to get one tree
             FunTree selected = tournament(population);
             //selected.selected++;
-            if(selected.selected >= TOURNAMENT_SIZE * 2)
+            if(selected.selected >= TOURNAMENT_SIZE)
             {
                 nextGen[i] = selected;
                 selected.selected = 0;
