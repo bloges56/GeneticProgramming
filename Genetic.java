@@ -129,7 +129,7 @@ public class Genetic {
 
             int tries = 0;
             //favor less complex solutions
-            while(tries <= 30 && (selected.getDepth() > 8 || selected.getSize() > 20))
+            while(tries <= 50 && (selected.getDepth() > 8 || selected.getSize() > 20))
             {
                 selected = tournament(population);
                 tries++;
