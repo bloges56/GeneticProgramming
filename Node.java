@@ -79,7 +79,9 @@ public class Node {
         constant = copyFrom.constant;
         independentVar = copyFrom.independentVar;
         operation = copyFrom.operation;
-        x = copyFrom.x;
+        x[0] = copyFrom.x[0];
+        x[1] = copyFrom.x[1];
+        x[2] = copyFrom.x[2];
     }
 
     //override toString
@@ -96,11 +98,11 @@ public class Node {
                 {
                     if(x[i])
                     {
-                        if(i == 1)
+                        if(i == 0)
                         {
-                            return "X1";
+                            return "X";
                         }
-                        if(i == 2)
+                        if(i == 1)
                         {
                             return "Y";
                         }
