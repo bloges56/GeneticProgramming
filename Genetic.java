@@ -33,7 +33,7 @@ public class Genetic {
             System.out.println("data not found");
         }
         
-    //     //crossover add fitter of two children
+         //crossover add fitter of two children
 
 
         Float[][] selectedData = new Float[DATA_SIZE][2];
@@ -50,7 +50,9 @@ public class Genetic {
          // reserve part of the data as "future data points"
          // generate random, but valid trees in an array
 
-       
+       FunTree[] fittestTrees = new FunTree[10];
+       for(int runs = 0; runs < 10; runs++)
+       {
         FunTree[] generation = new FunTree[POPULATION_SIZE];
         for(int i = 0; i <POPULATION_SIZE; i++)
         {
@@ -62,7 +64,7 @@ public class Genetic {
         float fittestVal = fittestTree.getFitness();
 
         // loop while fittest > some value
-        while(fittestVal >= 0.0168)
+        while(fittestVal >= 0.0007168)
         {
             // get the fittest in new generation
             FunTree[] nextGen = nextGen(generation);
@@ -73,12 +75,41 @@ public class Genetic {
             generation = nextGen;  
         }
 
+        fittestTrees[runs] = fittestTree;
+       }
+        
+       FunTree bestTree = getSmallest(fittestTrees);
+
         // test if our returned expression is "over-fitted"
         FunTree.data = data;
-        System.out.println(fittestTree);
-        System.out.println(fittestTree.getFitness());
+        System.out.println(bestTree);
+        System.out.println(bestTree.getFitness());
         
         
+    }
+
+    private static FunTree getSmallest(FunTree[] trees)
+    {
+        FunTree smallestTree = trees[0];
+        int smallestDepth = trees[0].getDepth();
+        for(int i = 1; i < trees.length; i++)
+        {
+            int depth = trees[i].getDepth();
+            if(depth < smallestDepth)
+            {
+                smallestTree = trees[i];
+                smallestDepth = depth;
+            }
+            else if(depth == smallestDepth)
+            {
+                if(trees[i].getSize() < smallestTree.getSize())
+                {
+                    smallestTree = trees[i];
+                }
+            }
+        }
+  
+          return smallestTree;
     }
 
       //method to get fittest in given array of trees
@@ -129,7 +160,7 @@ public class Genetic {
 
             int tries = 0;
             //favor less complex solutions
-            while(tries <= 10 && (selected.getDepth() > 8 || selected.getSize() > 20))
+            while(tries <= 50 && (selected.getDepth() > 8 || selected.getSize() > 20))
             {
                 selected = tournament(population);
                 tries++;
