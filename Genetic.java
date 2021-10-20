@@ -34,7 +34,7 @@ public class Genetic {
             System.out.println("data not found");
         }
         
-    //      //crossover add fitter of two children
+          //crossover add fitter of two children
 
 
         Float[][] selectedData = new Float[DATA_SIZE][4];

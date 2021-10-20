@@ -240,54 +240,54 @@ public class FunTree
     }
 
 
-    public Node getRandomNode()
-    {
-        return getRandomNodeUtil(rootNode, 0);
-    }
-
-    private Node getRandomNodeUtil(Node current, int depth)
-    {
-        if(current.operation == null)
-        {
-            return current;
-        }
-
-        if((int)(Math.random() * maxDepth) < depth * 2)
-        {
-            return current;
-        }
-
-        if(Math.round(Math.random()) == 0)
-        {
-            return getRandomNodeUtil(current.right, ++depth);
-        }
-        return getRandomNodeUtil(current.left, ++depth);
-    }
-
     // public Node getRandomNode()
     // {
-    //     int count = (int) Math.round(Math.random() * getSize());
-    //     return getRandomNodeUtil(rootNode, count);
+    //     return getRandomNodeUtil(rootNode, 0);
     // }
 
-    // private Node getRandomNodeUtil(Node current, int count)
+    // private Node getRandomNodeUtil(Node current, int depth)
     // {
-    //     if(current == null)
-    //     {
-    //         return getRandomNode();
-    //     }
-
-    //     if(count == getSizeUtil(current))
+    //     if(current.operation == null)
     //     {
     //         return current;
     //     }
 
-    //     if(count < getSizeUtil(current.left))
+    //     if((int)(Math.random() * maxDepth) < depth * 2)
     //     {
-    //         return getRandomNodeUtil(current.left, count);
+    //         return current;
     //     }
-    //     return getRandomNodeUtil(current.right, count - getSizeUtil(current.left));
+
+    //     if(Math.round(Math.random()) == 0)
+    //     {
+    //         return getRandomNodeUtil(current.right, ++depth);
+    //     }
+    //     return getRandomNodeUtil(current.left, ++depth);
     // }
+
+    public Node getRandomNode()
+    {
+        int count = (int) Math.round(Math.random() * getSize());
+        return getRandomNodeUtil(rootNode, count);
+    }
+
+    private Node getRandomNodeUtil(Node current, int count)
+    {
+        if(current == null)
+        {
+            return getRandomNode();
+        }
+
+        if(count == getSizeUtil(current))
+        {
+            return current;
+        }
+
+        if(count < getSizeUtil(current.left))
+        {
+            return getRandomNodeUtil(current.left, count);
+        }
+        return getRandomNodeUtil(current.right, count - getSizeUtil(current.left));
+    }
 
     public int getDepth()
     {
