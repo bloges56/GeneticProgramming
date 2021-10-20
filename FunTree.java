@@ -314,9 +314,9 @@ public class FunTree
             float actual = data[i][3];
             float[] xData = {data[i][0], data[i][1], data[i][2]};
             float evaluated = evaluate(xData);
-            sum += Math.pow(actual - evaluated, 2);
+            sum += Math.abs(actual - evaluated);
         }
 
-        return sum/data.length;
+        return sum;
     }
 }
