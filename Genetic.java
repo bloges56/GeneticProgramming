@@ -133,9 +133,24 @@ public class Genetic {
       }
    
 
+      private static FunTree tournament(FunTree[] trees)
+      {
+           // run tournament selection to get one tree
+           FunTree selected = tournamentUtil(trees);
+
+           int tries = 0;
+           //favor less complex solutions
+           while(tries <= 20 && (selected.getDepth() > 8 || selected.getSize() > 20))
+           {
+               selected = tournamentUtil(trees);
+               tries++;
+           }
+
+           return selected;
+      }
        // method to run tournament selection, returning a tree
     // pick N random trees from list and return the fittest
-    private static FunTree tournament(FunTree[] trees)
+    private static FunTree tournamentUtil(FunTree[] trees)
     {
         FunTree[] selected = new FunTree[TOURNAMENT_SIZE];
         for(int i = 0; i < TOURNAMENT_SIZE; i++)
@@ -159,28 +174,20 @@ public class Genetic {
         {
             // run tournament selection to get one tree
             FunTree selected = tournament(population);
-
-            int tries = 0;
-            //favor less complex solutions
-            while(tries <= 20 && (selected.getDepth() > 8 || selected.getSize() > 20))
-            {
-                selected = tournament(population);
-                tries++;
-            }
-            selected.selected++;
-            if(selected.selected >= TOURNAMENT_SIZE && !selected.reproduced)
-            {
-                nextGen[i] = selected;
-                selected.reproduced = true;
-                continue;
-            }
+            //selected.selected++;
+            // if(selected.selected >= TOURNAMENT_SIZE && !selected.reproduced)
+            // {
+            //     nextGen[i] = selected;
+            //     selected.reproduced = true;
+            //     continue;
+            // }
             // //if 30% chance
             if((int) (Math.random() * 10) <= 3)
             {
                 //run tournament to get another tree and do crossover operation
                 //and add offspring to new population
                 FunTree mate = tournament(population);
-                mate.selected++;
+               // mate.selected++;
                 FunTree child = selected.crossover(mate);
                 nextGen[i] = child;
                 

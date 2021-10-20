@@ -126,7 +126,7 @@ public class FunTree
     }
 
     //evaluate the tree at the root
-    public float evaluate(float x[])
+    public float evaluate(float[] x)
     {
         return evaluateUtil(x, rootNode);
     }
