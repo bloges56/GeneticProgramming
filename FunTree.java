@@ -29,9 +29,8 @@ public class FunTree
     //constructor
     public FunTree()
     {
-        rootNode = createRandomOp();
-        int depth = (int) Math.round(Math.random() * maxDepth);
-        randomTree(rootNode, depth);
+        rootNode = new Node();
+        randomTree(rootNode, maxDepth);
     }
 
     //constructor with given root node
@@ -52,15 +51,17 @@ public class FunTree
     private void randomTree(Node current, int depth)
     {
        //if no starting point is given, just return a constant 
-        if(Math.round(Math.random() * depth) == 0)
+        if((int)(Math.random() * depth) == 0)
         {
-            current = createRandomLeaf(constantRange);
+            current.replace(createRandomLeaf(constantRange));
             return;
         }
-        current = createRandomOp();
+        current.replace(createRandomOp());
+        current.left = new Node();
+        current.right = new Node();
         //set left side
-        randomTree(current.right, depth--);
-        randomTree(current.left,  depth--);
+        randomTree(current.right, --depth);
+        randomTree(current.left,  --depth);
         // //if leaf
         // if((int)(Math.random() * maxDepth) <= depth)
         // {
@@ -105,7 +106,7 @@ public class FunTree
     {
         Node leafNode = new Node();
         //chance to be independent variable
-        if((int)(Math.random() * independentVarChance) == 0)
+        if(Math.round(Math.random()) == 0)
         {
             leafNode.independentVar = true;
         }
@@ -251,16 +252,16 @@ public class FunTree
         //create random sub tree from randomly selected node
         // Node randomNode = tempTree.getRandomNode();
 
-        FunTree randomTree = new FunTree(createRandomNode());
+        // FunTree randomTree = new FunTree(createRandomNode());
 
-        if(randomTree.rootNode.operation != null)
-        {
-            randomTree.randomTree(randomTree.rootNode, mutationDepth);
-        }
+        // if(randomTree.rootNode.operation != null)
+        // {
+        //     randomTree.randomTree(randomTree.rootNode, mutationDepth);
+        // }
         
         Node randomNode = mutateTree.getRandomNode();
-
-        randomNode.replace(randomTree.rootNode);
+        int depth = getDepthUtil(randomNode);
+        randomTree(randomNode, depth);
 
         return mutateTree;
     }

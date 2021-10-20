@@ -65,9 +65,9 @@ public class Genetic {
     //     // reserve part of the data as "future data points"
     //     // generate random, but valid trees in an array
 
-    //     //  FunTree test = new FunTree();
+           //FunTree test = new FunTree();
     //     // FunTree mutated = test.mutation();
-    //     // System.out.println(test);
+         // System.out.println(test);
     //     // System.out.println("\n" + mutated);
     //     // System.out.println(mutated.evaluate(-2.f));
     //     // System.out.println("\n" + mutated.evaluate(1));
@@ -78,11 +78,11 @@ public class Genetic {
             generation[i] = new FunTree();
         }
 
-    //       // set float value fittest greater than selected value
+    // //       // set float value fittest greater than selected value
         FunTree fittestTree = getFittest(generation);
         float fittestVal = fittestTree.getFitness();
 
-       // loop while fittest > some value
+    //    // loop while fittest > some value
         while(fittestVal >= 0.0168)
         {
             // get the fittest in new generation
