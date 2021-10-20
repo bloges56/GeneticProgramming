@@ -33,7 +33,7 @@ public class Genetic {
             System.out.println("data not found");
         }
         
-    //     //crossover add fitter of two children
+         //crossover add fitter of two children
 
 
         Float[][] selectedData = new Float[DATA_SIZE][2];
@@ -50,7 +50,7 @@ public class Genetic {
          // reserve part of the data as "future data points"
          // generate random, but valid trees in an array
 
-        FunTree[] fittestTrees = new FunTree[10];
+       FunTree[] fittestTrees = new FunTree[10];
        for(int runs = 0; runs < 10; runs++)
        {
         FunTree[] generation = new FunTree[POPULATION_SIZE];
@@ -78,16 +78,17 @@ public class Genetic {
         fittestTrees[runs] = fittestTree;
        }
         
+       FunTree bestTree = getSmallest(fittestTrees);
 
         // test if our returned expression is "over-fitted"
         FunTree.data = data;
-        System.out.println(fittestTree);
-        System.out.println(fittestTree.getFitness());
+        System.out.println(bestTree);
+        System.out.println(bestTree.getFitness());
         
         
     }
 
-    private static FunTree getSmalles(FunTree[] trees)
+    private static FunTree getSmallest(FunTree[] trees)
     {
         FunTree smallestTree = trees[0];
         int smallestDepth = trees[0].getDepth();
@@ -101,11 +102,14 @@ public class Genetic {
             }
             else if(depth == smallestDepth)
             {
-                
+                if(trees[i].getSize() < smallestTree.getSize())
+                {
+                    smallestTree = trees[i];
+                }
             }
         }
   
-          return fittestTree;
+          return smallestTree;
     }
 
       //method to get fittest in given array of trees
