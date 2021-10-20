@@ -5,7 +5,7 @@ public class Genetic {
 
     private static int DATA_SIZE = 500;
     private static int POPULATION_SIZE = 500;
-    private static int TOURNAMENT_SIZE = 5;
+    private static int TOURNAMENT_SIZE = 2;
     public static void main(String[] args) {
     // read in our data
     
