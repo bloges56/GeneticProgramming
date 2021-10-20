@@ -6,7 +6,7 @@ public class FunTree
     public static Float[][] data;
 
     //set depth max depth range
-    private final int maxDepth = 4;
+    private final int maxDepth = 6;
 
     //set range of constant for leaves
     private final int constantRange = 10;
@@ -85,6 +85,8 @@ public class FunTree
         if(Math.round(Math.random()) == 0)
         {
             leafNode.independentVar = true;
+            int var = (int)(Math.random() * 3);
+            leafNode.x[var] = true;
         }
         else
         {
@@ -124,14 +126,14 @@ public class FunTree
     }
 
     //evaluate the tree at the root
-    public float evaluate(float x)
+    public float evaluate(float x[])
     {
         return evaluateUtil(x, rootNode);
     }
  
 
     //method to evaluate tree with given X
-    private float evaluateUtil(float x, Node current)
+    private float evaluateUtil(float[] x, Node current)
     {
         //if current node is null return 0
         if(current == null)
@@ -143,14 +145,20 @@ public class FunTree
         if(current.operation != null)
         {
             float left = evaluateUtil(x, current.left);
-            float right = evaluateUtil(x, current.right);
+            float right = evaluateUtil(x,  current.right);
             return doOperation(current.operation, left, right);
         }
 
         //if leaf and independentVar return x
         if(current.independentVar)
         {
-            return x;
+            for(int i =0; i <current.x.length; i++)
+            {
+                if(current.x[i])
+                {
+                    return x[i];
+                }
+            }
         }
 
         //if leaf constant, return constant
@@ -297,17 +305,18 @@ public class FunTree
         return 1 + getSizeUtil(current.left) + getSizeUtil(current.right);
     }
 
-    //fitness function
+    // //fitness function
     public float getFitness()
     {
         float sum = 0.f;
         for(int i =0; i<data.length; i++)
         {
-            float actual = data[i][1];
-            float evaluated = evaluate(data[i][0]);
-            sum += Math.pow(actual - evaluated, 2);
+            float actual = data[i][3];
+            float[] xData = {data[i][0], data[i][1], data[i][2]};
+            float evaluated = evaluate(xData);
+            sum += Math.abs(actual - evaluated);
         }
 
-        return sum/data.length;
+        return sum;
     }
 }

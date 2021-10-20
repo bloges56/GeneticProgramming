@@ -8,14 +8,15 @@ public class Genetic {
     private static int TOURNAMENT_SIZE = 3;
     public static void main(String[] args) {
     // read in our data
-        Float[][] data = new Float[25000][2];
+    
+        Float[][] data = new Float[25000][4];
         try{
-            BufferedReader csvReader = new BufferedReader(new FileReader("./dataset1.csv"));
+            BufferedReader csvReader = new BufferedReader(new FileReader("./dataset2.csv"));
             String row = csvReader.readLine();
             int i = 0;
             while (row != null) {
                 String[] rowS = row.split(",");
-                if(!rowS[0].equals("x"))
+                if(!rowS[0].equals("x1"))
                 {
                     for(int j = 0; j < rowS.length; j++)
                     {
@@ -33,10 +34,10 @@ public class Genetic {
             System.out.println("data not found");
         }
         
-         //crossover add fitter of two children
+    //      //crossover add fitter of two children
 
 
-        Float[][] selectedData = new Float[DATA_SIZE][2];
+        Float[][] selectedData = new Float[DATA_SIZE][4];
         for(int i = 0; i < DATA_SIZE; i++ )
         {
             for(int j=0; j<selectedData[i].length; j++)
@@ -46,9 +47,10 @@ public class Genetic {
         }
 
         FunTree.data = selectedData;
+        
 
-         // reserve part of the data as "future data points"
-         // generate random, but valid trees in an array
+     // reserve part of the data as "future data points"
+    // generate random, but valid trees in an array
 
        FunTree[] fittestTrees = new FunTree[10];
        for(int runs = 0; runs < 10; runs++)
@@ -64,7 +66,7 @@ public class Genetic {
         float fittestVal = fittestTree.getFitness();
 
         // loop while fittest > some value
-        while(fittestVal >= 0.0007168)
+        while(fittestVal >= 30)
         {
             // get the fittest in new generation
             FunTree[] nextGen = nextGen(generation);
@@ -80,7 +82,7 @@ public class Genetic {
         
        FunTree bestTree = getSmallest(fittestTrees);
 
-        // test if our returned expression is "over-fitted"
+         // test if our returned expression is "over-fitted"
         FunTree.data = data;
         System.out.println(bestTree);
         System.out.println(bestTree.getFitness());

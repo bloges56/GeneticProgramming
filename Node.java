@@ -13,6 +13,8 @@ public class Node {
     //independent boolean member variable
     public boolean independentVar = false;
 
+    public boolean[] x = new boolean[3];
+
     //constant int member variable
     public int constant;
 
@@ -77,6 +79,7 @@ public class Node {
         constant = copyFrom.constant;
         independentVar = copyFrom.independentVar;
         operation = copyFrom.operation;
+        x = copyFrom.x;
     }
 
     //override toString
@@ -89,7 +92,21 @@ public class Node {
             //check if independent var
             if(independentVar)
             {
-                return "X";
+                for(int i =0; i<x.length; i++)
+                {
+                    if(x[i])
+                    {
+                        if(i == 1)
+                        {
+                            return "X1";
+                        }
+                        if(i == 2)
+                        {
+                            return "Y";
+                        }
+                        return "Z";
+                    }
+                }
             }
             else
             {
