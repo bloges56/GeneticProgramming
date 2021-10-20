@@ -6,7 +6,7 @@ public class FunTree
     public static Float[][] data;
 
     //set depth max depth range
-    private final int maxDepth = 10;
+    private final int maxDepth = 7;
 
     //set range of constant for leaves
     private final int constantRange = 10;
