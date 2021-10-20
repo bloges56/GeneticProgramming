@@ -4,7 +4,7 @@ import java.io.FileReader;
 public class Genetic {
 
     private static int DATA_SIZE = 500;
-    private static int POPULATION_SIZE = 2000;
+    private static int POPULATION_SIZE = 10000;
     private static int TOURNAMENT_SIZE = 5;
     public static void main(String[] args) {
     // read in our data
