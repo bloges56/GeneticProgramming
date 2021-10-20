@@ -3,7 +3,7 @@ import java.io.FileReader;
 
 public class Genetic {
 
-    private static int DATA_SIZE = 500;
+    private static int DATA_SIZE = 1000;
     private static int POPULATION_SIZE = 750;
     private static int TOURNAMENT_SIZE = 4;
     public static void main(String[] args) {
