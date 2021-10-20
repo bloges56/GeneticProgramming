@@ -6,7 +6,7 @@ public class FunTree
     public static Float[][] data;
 
     //set depth max depth range
-    private final int maxDepth = 7;
+    private final int maxDepth = 4;
 
     //set range of constant for leaves
     private final int constantRange = 10;
@@ -233,8 +233,8 @@ public class FunTree
     {
         FunTree mutateTree = new FunTree(rootNode); 
         Node randomNode = mutateTree.getRandomNode();
-        int depth = getDepthUtil(randomNode);
-        randomTree(randomNode, depth);
+        //int depth = getDepthUtil(randomNode);
+        randomTree(randomNode, maxDepth);
 
         return mutateTree;
     }
