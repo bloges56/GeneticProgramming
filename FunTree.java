@@ -11,11 +11,11 @@ public class FunTree
     //set range of constant for leaves
     private final int constantRange = 10;
 
-    //declare mutation tree depth
-    private final int mutationDepth = 4;
+    // //declare mutation tree depth
+    // private final int mutationDepth = 4;
 
-    //chance to be independent var
-    private final int independentVarChance = 2;
+    // //chance to be independent var
+    // private final int independentVarChance = 2;
 
     //track the number of times this tree has been selected
     public int selected;
@@ -29,8 +29,8 @@ public class FunTree
     //constructor
     public FunTree()
     {
-        rootNode = createRandomOp();
-        randomTree(rootNode, 0);
+        rootNode = new Node();
+        randomTree(rootNode, maxDepth);
     }
 
     //constructor with given root node
@@ -51,50 +51,30 @@ public class FunTree
     private void randomTree(Node current, int depth)
     {
        //if no starting point is given, just return a constant 
-        if(current == null)
+        if((int)(Math.random() * depth) == 0)
         {
-            current = createRandomLeaf(constantRange);
+            current.replace(createRandomLeaf(constantRange));
+            return;
         }
-
-        //set left side
-
-        //if leaf
-        if((int)(Math.random() * maxDepth) <= depth + 1)
-        {
-            current.left = createRandomLeaf(constantRange);
-        }
-        //if operation, recurse
-        else
-        {
-            current.left = createRandomOp();
-            randomTree(current.left, ++depth);
-        }
-
+        current.replace(createRandomOp());
+        current.left = new Node();
+        current.right = new Node();
         //set right side
-
-        //if leaf
-         if((int)(Math.random() * maxDepth) <= depth + 1)
-         {
-             current.right = createRandomLeaf(constantRange);
-         }
-         //if operation, recurse
-         else
-         {
-             current.right = createRandomOp();
-             randomTree(current.right, ++depth);
-         }
+        randomTree(current.right, --depth);
+        //set left side
+        randomTree(current.left,  --depth);
     }
 
     //method to return a random node
-    private Node createRandomNode()
-    {
-        if((int)(Math.random() * 2) == 0)
-        {
-            return createRandomLeaf(constantRange);
-        }
+    // private Node createRandomNode()
+    // {
+    //     if((int)(Math.random() * 2) == 0)
+    //     {
+    //         return createRandomLeaf(constantRange);
+    //     }
 
-        return createRandomOp();
-    }
+    //     return createRandomOp();
+    // }
 
 
     //create random constant
@@ -102,13 +82,13 @@ public class FunTree
     {
         Node leafNode = new Node();
         //chance to be independent variable
-        if((int)(Math.random() * independentVarChance) == 0)
+        if(Math.round(Math.random()) == 0)
         {
             leafNode.independentVar = true;
         }
         else
         {
-            leafNode.constant = (int)(Math.random() * range - range / 2);
+            leafNode.constant = (int)(Math.random() * range - range / 2.f);
         }
         return leafNode;
     }
@@ -180,26 +160,32 @@ public class FunTree
     //method to make a type of computation given a string
     private float doOperation(String op, float left, float right)
     {
+        if(op.equals("div"))
+        {
+            if(right == 0.f)
+            {
+                return 1;
+            }
+
+            return left / right;
+        }
+
         if(op.equals("add"))
         {
             return right + left;
         }
 
-        else if(op.equals("sub"))
+        if(op.equals("sub"))
         {
             return left - right;
         }
-        else if(op.equals("mul"))
+
+        if(op.equals("mul"))
         {
             return right * left;
         }
 
-        if(right == 0)
-        {
-            return left;
-        }
-
-        return left / right;
+        return 1;
     }
 
     
@@ -237,21 +223,10 @@ public class FunTree
     //mutation method
     public FunTree mutation()
     {
-        FunTree mutateTree = new FunTree(rootNode);
-
-        //create random sub tree from randomly selected node
-        // Node randomNode = tempTree.getRandomNode();
-
-        FunTree randomTree = new FunTree(createRandomNode());
-
-        if(randomTree.rootNode.operation != null)
-        {
-            randomTree.randomTree(randomTree.rootNode, mutationDepth);
-        }
-        
+        FunTree mutateTree = new FunTree(rootNode); 
         Node randomNode = mutateTree.getRandomNode();
-
-        randomNode.replace(randomTree.rootNode);
+        int depth = getDepthUtil(randomNode);
+        randomTree(randomNode, depth);
 
         return mutateTree;
     }
@@ -259,28 +234,27 @@ public class FunTree
 
     public Node getRandomNode()
     {
-        int depth = getDepth();
-        return getRandomNodeUtil(rootNode, 0, depth);
+        int count = (int) Math.round(Math.random() * getSize());
+        return getRandomNodeUtil(rootNode, count);
     }
 
-    public Node getRandomNodeUtil(Node current, int depth, int treeDepth)
+    private Node getRandomNodeUtil(Node current, int count)
     {
-        if(current.operation == null)
+        if(current == null)
+        {
+            return getRandomNode();
+        }
+
+        if(count == getSizeUtil(current))
         {
             return current;
         }
-        if((int)(Math.random() * 10) <= 2 * treeDepth)
+
+        if(count < getSizeUtil(current.left))
         {
-            return current;
+            return getRandomNodeUtil(current.left, count);
         }
-        if((int)(Math.random() * 2) == 0)
-        {
-            return getRandomNodeUtil(current.left, depth++, treeDepth);
-        }
-        else
-        {
-            return getRandomNodeUtil(current.right, depth++, treeDepth);
-        }
+        return getRandomNodeUtil(current.right, count - getSizeUtil(current.left));
     }
 
     public int getDepth()
@@ -290,11 +264,15 @@ public class FunTree
 
     private int getDepthUtil(Node current)
     {
+        if(current == null)
+        {
+            return -1;
+        }
+
         if(current.operation == null)
         {
             return 0;
         }
-
         int depthLeft = 1 + getDepthUtil(current.left);
         int depthRight = 1 + getDepthUtil(current.right);
         if(depthLeft > depthRight)
@@ -327,19 +305,9 @@ public class FunTree
         {
             float actual = data[i][1];
             float evaluated = evaluate(data[i][0]);
-            sum += Math.abs(actual - evaluated);
+            sum += Math.pow(actual - evaluated, 2);
         }
 
-        return sum;
+        return sum/data.length;
     }
-
-    // public boolean equals(FunTree tree)
-    // {
-    //     return tree.getFitness() == getFitness();
-    // }
-
-    // public float HashCode()
-    // {
-    //     return getFitness();
-    // }
 }
