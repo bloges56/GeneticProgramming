@@ -16,7 +16,7 @@ public class Node {
     public boolean[] x = new boolean[3];
 
     //constant int member variable
-    public int constant;
+    public float constant;
 
     //constructor for a root Node
     public Node()
