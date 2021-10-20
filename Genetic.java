@@ -2,23 +2,12 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 
 public class Genetic {
-    // private static Comparator<FunTree> treeComparator = new Comparator<FunTree>() {
-    //     @Override
-    //     public int compare(FunTree f1, FunTree f2) {
-    //         return (int) (f1.getFitness() - f2.getFitness());
-    //     }
-    // };
 
     private static int DATA_SIZE = 500;
     private static int POPULATION_SIZE = 500;
     private static int TOURNAMENT_SIZE = 3;
     public static void main(String[] args) {
-        // FunTree test = new FunTree();
-        // System.out.println(test);
-        //  System.out.println(test.getSize());
-    //    // System.out.println(test.evaluate(1));
-         //System.out.println(test.getRandomNode());
-    //     // read in our data
+    // read in our data
         Float[][] data = new Float[25000][2];
         try{
             BufferedReader csvReader = new BufferedReader(new FileReader("./dataset1.csv"));
@@ -58,19 +47,9 @@ public class Genetic {
 
         FunTree.data = selectedData;
 
-    //     // FunTree father = new FunTree();
-    //     // FunTree mother = new FunTree();
-    //     // FunTree child = father.crossover(mother);
-    //     // System.out.println(father + "\n" + mother + "\n" + child);
-    //     // reserve part of the data as "future data points"
-    //     // generate random, but valid trees in an array
+         // reserve part of the data as "future data points"
+         // generate random, but valid trees in an array
 
-           //FunTree test = new FunTree();
-    //     // FunTree mutated = test.mutation();
-         // System.out.println(test);
-    //     // System.out.println("\n" + mutated);
-    //     // System.out.println(mutated.evaluate(-2.f));
-    //     // System.out.println("\n" + mutated.evaluate(1));
        
         FunTree[] generation = new FunTree[POPULATION_SIZE];
         for(int i = 0; i <POPULATION_SIZE; i++)
@@ -78,11 +57,11 @@ public class Genetic {
             generation[i] = new FunTree();
         }
 
-    // //       // set float value fittest greater than selected value
+           // set float value fittest greater than selected value
         FunTree fittestTree = getFittest(generation);
         float fittestVal = fittestTree.getFitness();
 
-    //    // loop while fittest > some value
+        // loop while fittest > some value
         while(fittestVal >= 0.0168)
         {
             // get the fittest in new generation
@@ -93,12 +72,13 @@ public class Genetic {
             System.out.println(fittestVal);
             generation = nextGen;  
         }
+
+        // test if our returned expression is "over-fitted"
         FunTree.data = data;
         System.out.println(fittestTree);
         System.out.println(fittestTree.getFitness());
         
-
-        // test if our returned expression is "over-fitted"
+        
     }
 
       //method to get fittest in given array of trees
@@ -183,12 +163,4 @@ public class Genetic {
         //set population to nextGen
        return nextGen;
     }
-
-    // private static void deepCopy(FunTree[] current, FunTree[] next)
-    // {
-    //     for(int i = 0; i <current.length; i++)
-    //     {
-    //         current[i].rootNode.replace(next[i].rootNode);
-    //     }
-    // }
 }
