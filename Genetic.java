@@ -62,7 +62,7 @@ public class Genetic {
         float fittestVal = fittestTree.getFitness();
 
         // loop while fittest > some value
-        while(fittestVal >= 0.00000168)
+        while(fittestVal >= 0.0007168)
         {
             // get the fittest in new generation
             FunTree[] nextGen = nextGen(generation);
