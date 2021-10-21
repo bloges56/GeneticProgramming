@@ -138,14 +138,11 @@ public class Genetic {
            // run tournament selection to get one tree
            FunTree selected = tournamentUtil(trees);
 
-           int tries = 0;
            //favor less complex solutions
-           while(tries <= 20 && (selected.getDepth() > 8 || selected.getSize() > 20))
+           while(selected.getDepth() > 8 || selected.getSize() > 20)
            {
                selected = tournamentUtil(trees);
-               tries++;
            }
-
            return selected;
       }
        // method to run tournament selection, returning a tree
@@ -182,21 +179,52 @@ public class Genetic {
                 continue;
             }
             // //if 30% chance
-            if((int) (Math.random() * 10) <= 3)
+            if((int) (Math.random() * 10) <= 4)
             {
                 //run tournament to get another tree and do crossover operation
                 //and add offspring to new population
                 FunTree mate = tournament(population);
                 mate.selected++;
-                FunTree child = selected.crossover(mate);
-                nextGen[i] = child;
-                
+                FunTree[] children = selected.crossover(mate);
+                nextGen[i] = children[0];
+                i++;
+                if(i < nextGen.length)
+                {
+                    nextGen[i] = children[1];
+                }  
             }
-            else
+            else if((int) (Math.random() * 10) <= 4)
             {
                 //add mutated offspring to new population
                 FunTree mutated = selected.mutation();
                 nextGen[i] = mutated;
+            }
+            else
+            {
+                FunTree mate = tournament(population);
+                mate.selected++;
+                FunTree[] children = selected.crossover(mate);
+                nextGen[i] = children[0];
+                i++;
+                if(i < nextGen.length)
+                {
+                    nextGen[i] = children[1];
+                } 
+                i++;
+                if(i < nextGen.length)
+                {
+                    //add mutated offspring to new population
+                    FunTree mutated = selected.mutation();
+                    nextGen[i] = mutated;
+                }
+                i++;
+                if(i < nextGen.length)
+                {
+                    //add mutated offspring to new population
+                    FunTree mutated = mate.mutation();
+                    nextGen[i] = mutated;
+                }
+
             }
         }
 

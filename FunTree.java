@@ -198,7 +198,7 @@ public class FunTree
 
     
     //cross over method
-    public FunTree crossover(FunTree mother)
+    public FunTree[] crossover(FunTree mother)
     {
         //Tree[] crosssover (Tree crossover)
         //pick random node on this tree
@@ -218,12 +218,8 @@ public class FunTree
         randomNodeP2.replace(randomNodeP1);
         randomNodeP1.replace(temp);
 
-        if(child1.getFitness() < child2.getFitness())
-        {
-            return child1;
-        }
-
-        return child2;
+        FunTree[] children = {child1, child2};
+        return children;
     }
     
 
