@@ -34,6 +34,12 @@ public class Genetic {
             System.out.println("data not found");
         }
 
+        float[][] selectedData = new float[500][4];
+        for(int i = 0; i< 500; i++)
+        {
+            selectedData[i] = data[i];
+        }
+
         Population subPop1 = new Population();
         Population subPop2 = new Population();
         Population subPop3 = new Population();
@@ -79,7 +85,7 @@ public class Genetic {
             fittestPop.variableData = data;
             FunTree fittestTree = fittestPop.getMostFit();
             System.out.println(fittestTree);
-            System.out.println(fittestTree.getMSE(data));
+            System.out.println(fittestTree.getFitness(selectedData));
         }   
     }
 }
