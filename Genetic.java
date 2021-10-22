@@ -75,6 +75,8 @@ public class Genetic {
             }
 
             Population fittestPop = new Population(fittest);
+            fittestPop.fixedData = data;
+            fittestPop.variableData = data;
             FunTree fittestTree = fittestPop.getMostFit();
             System.out.println(fittestTree);
             System.out.println(fittestTree.getMSE(data));
