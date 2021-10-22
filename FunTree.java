@@ -3,8 +3,6 @@ public class FunTree
     //static global array of operations
     private static String[] operations = {"add", "sub", "mul", "div"};
 
-    public static Float[][] data;
-
     //set depth max depth range
     private final int maxDepth = 4;
 
@@ -326,7 +324,7 @@ public class FunTree
     }
 
     // //fitness function
-    public float getFitness()
+    public float getFitness(float[][] data)
     {
         float sum = 0.f;
         for(int i =0; i<data.length; i++)
@@ -338,5 +336,19 @@ public class FunTree
         }
 
         return sum;
+    }
+
+    public float getMSE(float[][] data)
+    {
+        float sum = 0.f;
+        for(int i =0; i<data.length; i++)
+        {
+            float actual = data[i][3];
+            float[] xData = {data[i][0], data[i][1], data[i][2]};
+            float evaluated = evaluate(xData);
+            sum += Math.pow(actual - evaluated, 2);
+        }
+
+        return sum/data.length;
     }
 }
