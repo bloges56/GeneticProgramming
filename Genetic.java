@@ -67,7 +67,7 @@ public class Genetic {
             {
                 populations[i].nextGen();
             }
-            if(count%10 == 0)
+            if((count+1)%5 == 0)
             {
                 for(int i = 0; i<populations.length; i++)
                 {
