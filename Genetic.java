@@ -7,7 +7,7 @@ public class Genetic {
     private static int DATA_SIZE = 1000;
     private static int GENERATIONS = 100;
     private static int POPULATIONS = 10;
-    private static int MIGRATION_RATE = 10;
+    private static int MIGRATION_RATE = 20;
     public static void main(String[] args) {
     // read in our data
 
@@ -85,6 +85,10 @@ public class Genetic {
                         populations[i].migrate(populations[i+1]);
                     }
                 }
+            }
+            if(count%50 == 0)
+            {
+                FunTree.maxDepth++;
             }
             count++;
             List<FunTree> fittest = new ArrayList<FunTree>();
