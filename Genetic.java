@@ -7,7 +7,7 @@ public class Genetic {
     private static int DATA_SIZE = 2500;
     private static int GENERATIONS = 100;
     private static int POPULATIONS = 5;
-    private static int MIGRATION_RATE = 10;
+    private static int MIGRATION_RATE = 50;
     public static void main(String[] args) {
     // read in our data
 
