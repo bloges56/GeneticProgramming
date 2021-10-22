@@ -198,14 +198,16 @@ public class FunTree
     //cross over method
     public FunTree[] crossover(FunTree mother)
     {
-        //Tree[] crosssover (Tree crossover)
+        FunTree child1, child2;
+        do{
+            //Tree[] crosssover (Tree crossover)
         //pick random node on this tree
-        FunTree child1 = new FunTree(rootNode);
+        child1 = new FunTree(rootNode);
         Node randomNodeP1 = child1.getRandomNode();
 
 
         //create new tree B and set root node to given tree root node
-        FunTree child2 = new FunTree(mother.rootNode);
+        child2 = new FunTree(mother.rootNode);
         
 
         //pick random node of B and set it to the A root Node
@@ -216,6 +218,9 @@ public class FunTree
         randomNodeP2.replace(randomNodeP1);
         randomNodeP1.replace(temp);
 
+        
+        }while(child1.getDepth() >8 && child2.getDepth()>8);
+        
         FunTree[] children = {child1, child2};
         return children;
     }
@@ -225,10 +230,14 @@ public class FunTree
     //mutation method
     public FunTree mutation()
     {
-        FunTree mutateTree = new FunTree(rootNode); 
-        Node randomNode = mutateTree.getRandomNode();
-        //int depth = getDepthUtil(randomNode);
-        randomTree(randomNode, maxDepth);
+        FunTree mutateTree;
+        do{
+            mutateTree = new FunTree(rootNode); 
+            Node randomNode = mutateTree.getRandomNode();
+            //int depth = getDepthUtil(randomNode);
+            randomTree(randomNode, maxDepth);
+        }while(mutateTree.getDepth() > 8);
+        
 
         return mutateTree;
     }
