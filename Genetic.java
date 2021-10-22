@@ -71,7 +71,7 @@ public class Genetic {
             {
                 populations[i].nextGen();
             }
-            if(count%100 == 0)
+            if(count%20 == 0)
             {
                 for(int i = 0; i<populations.length; i++)
                 {
@@ -98,7 +98,7 @@ public class Genetic {
             fittestTree = fittestPop.getMostFit();
             bestFit = fittestTree.getFitness(selectedData);
             System.out.println(fittestTree);
-            System.out.println(bestFit);
+            System.out.println(""+count +". "+bestFit);
         }   
     }
 }
