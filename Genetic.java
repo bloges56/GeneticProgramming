@@ -63,7 +63,7 @@ public class Genetic {
 
         FunTree fittestTree = new FunTree();
         float bestFit = fittestTree.getFitness(selectedData);
-        int count = 1;
+        int count = 0;
 
         while(bestFit > 1000000)
         {
@@ -71,7 +71,7 @@ public class Genetic {
             {
                 populations[i].nextGen();
             }
-            if(count%5 == 0)
+            if(count%100 == 0)
             {
                 for(int i = 0; i<populations.length; i++)
                 {

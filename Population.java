@@ -5,7 +5,7 @@ public class Population {
     public float[][] fixedData;
     public float[][] variableData;
     public List<FunTree> population;
-    private static int populationSize = 100;
+    private static int populationSize = 200;
     private static int TOURNAMENT_SIZE = 3;
 
     public Population()
@@ -27,7 +27,7 @@ public class Population {
         List<FunTree> fittestTrees =  new ArrayList<FunTree>();
         
 
-        while(fittestTrees.size() <= populationSize/3)
+        for(int j = 0; j <= populationSize/3; j++)
         {
             FunTree fittestTree = population.get(0);
             float fittestValue = fittestTree.getFitness(fixedData) + fittestTree.getFitness(variableData);
@@ -49,10 +49,7 @@ public class Population {
 
     public void removeLeastFit()
     {
-        List<FunTree> leastFitTrees =  new ArrayList<FunTree>();
-        
-
-        while(leastFitTrees.size() <= populationSize/3)
+        for(int j =0; j <= populationSize/3; j++)
         {
             FunTree leastFitTree = population.get(0);
             float leastFitValue = leastFitTree.getFitness(fixedData) + leastFitTree.getFitness(variableData);
@@ -62,11 +59,11 @@ public class Population {
                 float fitness = current.getFitness(fixedData) + current.getFitness(variableData);
                 if(fitness > leastFitValue)
                 {
-                    leastFitTree = population.remove(i);
+                    leastFitTree = population.get(i);
                     leastFitValue = fitness;
                 }
             }
-            leastFitTrees.add(leastFitTree);
+            population.remove(leastFitTree);
         }
     }
 
