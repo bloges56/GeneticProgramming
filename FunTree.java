@@ -4,7 +4,7 @@ public class FunTree
     private static String[] operations = {"add", "sub", "mul", "div"};
 
     //set depth max depth range
-    private final int maxDepth = 5;
+    private final int maxDepth = 8;
 
     //set range of constant for leaves
     private final int constantRange = 10;
