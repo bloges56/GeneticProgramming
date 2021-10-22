@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Genetic {
 
-    private static int DATA_SIZE = 25000;
+    private static int DATA_SIZE = 2500;
     private static int GENERATIONS = 100;
     private static int POPULATIONS = 10;
     private static int MIGRATION_RATE = 10;
