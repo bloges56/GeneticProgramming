@@ -72,7 +72,7 @@ public class Genetic {
             {
                 populations[i].nextGen();
             }
-            if(count%MIGRATION_RATE == 0)
+            if(count% MIGRATION_RATE == 0)
             {
                 for(int i = 0; i<populations.length; i++)
                 {

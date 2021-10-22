@@ -219,7 +219,7 @@ public class FunTree
         randomNodeP1.replace(temp);
 
         
-        }while(child1.getDepth() >maxDepth && child2.getDepth()>maxDepth);
+        }while(child1.getDepth() > maxDepth && child2.getDepth() > maxDepth);
         
         FunTree[] children = {child1, child2};
         return children;

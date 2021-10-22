@@ -113,7 +113,6 @@ public class Population {
         selectedPop.variableData = variableData;
         selectedPop.fixedData = fixedData;
         return selectedPop.getMostFit();
-
     }
 
     // every other generation, only create 90% of population size
