@@ -1,12 +1,11 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Population {
     public float[][] fixedData;
     public float[][] variableData;
     public List<FunTree> population;
-    private static int populationSize = 100;
+    private static int populationSize = 500;
     private static int TOURNAMENT_SIZE = 3;
 
     public Population()
@@ -129,7 +128,7 @@ public class Population {
            FunTree selected = tournamentUtil(population);
 
            //favor less complex solutions
-           while(selected.getDepth() > 8 || selected.getSize() > 20)
+           while(selected.getSize() >= 50)
            {
                selected = tournamentUtil(population);
            }

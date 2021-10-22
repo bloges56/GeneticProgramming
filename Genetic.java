@@ -61,13 +61,17 @@ public class Genetic {
             populations[i].variableData = variable;
         }
 
-        for(int count = 0; count<GENERATIONS; count++)
+        FunTree fittestTree = new FunTree();
+        float bestFit = fittestTree.getFitness(selectedData);
+        int count = 1;
+
+        while(bestFit > 1000000)
         {
             for(int i = 0; i <populations.length; i++)
             {
                 populations[i].nextGen();
             }
-            if((count+1)%5 == 0)
+            if(count%5 == 0)
             {
                 for(int i = 0; i<populations.length; i++)
                 {
@@ -81,6 +85,7 @@ public class Genetic {
                     }
                 }
             }
+            count++;
             List<FunTree> fittest = new ArrayList<FunTree>();
             for(int i = 0; i<populations.length; i++)
             {
@@ -90,9 +95,10 @@ public class Genetic {
             Population fittestPop = new Population(fittest);
             fittestPop.fixedData = data;
             fittestPop.variableData = data;
-            FunTree fittestTree = fittestPop.getMostFit();
+            fittestTree = fittestPop.getMostFit();
+            bestFit = fittestTree.getFitness(selectedData);
             System.out.println(fittestTree);
-            System.out.println(fittestTree.getFitness(selectedData));
+            System.out.println(bestFit);
         }   
     }
 }
