@@ -28,7 +28,7 @@ public class Population {
         List<FunTree> fittestTrees =  new ArrayList<FunTree>();
         
 
-        while(fittestTrees.size() <= 30)
+        while(fittestTrees.size() <= populationSize/3)
         {
             FunTree fittestTree = population.get(0);
             float fittestValue = fittestTree.getFitness(fixedData) + fittestTree.getFitness(variableData);
@@ -38,7 +38,7 @@ public class Population {
                 float fitness = current.getFitness(fixedData) + current.getFitness(variableData);
                 if(fitness < fittestValue)
                 {
-                    fittestTree = population.remove(i);
+                    fittestTree = population.get(i);
                     fittestValue = fitness;
                 }
             }
@@ -53,7 +53,7 @@ public class Population {
         List<FunTree> leastFitTrees =  new ArrayList<FunTree>();
         
 
-        while(leastFitTrees.size() <= 30)
+        while(leastFitTrees.size() <= populationSize/3)
         {
             FunTree leastFitTree = population.get(0);
             float leastFitValue = leastFitTree.getFitness(fixedData) + leastFitTree.getFitness(variableData);
@@ -73,6 +73,7 @@ public class Population {
 
     public void migrate(Population other)
     {
+        removeLeastFit();
         other.population.addAll(getFittest());
         other.variableData = variableData;
     }
