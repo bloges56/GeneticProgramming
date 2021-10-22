@@ -43,17 +43,20 @@ public class Genetic {
 
         Population[] populations = new Population[POPULATIONS];
 
-        for(int i = 0; i < 5; i++)
+        for(int i = 0; i < POPULATIONS; i++)
         {
             populations[i] = new Population();
-            float[][] constant = new float[DATA_SIZE/6][4];
-            float[][] variable = new float[DATA_SIZE/6][4];
-            int size = DATA_SIZE/3;
+            int size = DATA_SIZE/POPULATIONS;
+            float[][] constant = new float[size][4];
+            float[][] variable = new float[size][4];
             int start = i*size;
-            for(int j = 0; j<constant.length; j++)
+            for(int j=0; j<size; j++)
             {
                 constant[j] = data[start + 2 * j];
-                variable[j] = data[start + 2 * j + 1];
+                if(start + 2 * j + 1 < 25000)
+                {
+                    variable[j] = data[start + 2 * j + 1];
+                }
             }
 
             populations[i].fixedData = constant;
