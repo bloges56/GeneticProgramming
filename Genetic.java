@@ -46,7 +46,7 @@ public class Genetic {
         for(int i = 0; i < POPULATIONS; i++)
         {
             populations[i] = new Population();
-            int size = DATA_SIZE/POPULATIONS * 2;
+            int size = DATA_SIZE/(POPULATIONS * 2);
             float[][] constant = new float[size][4];
             float[][] variable = new float[size][4];
             int start = i*size;
