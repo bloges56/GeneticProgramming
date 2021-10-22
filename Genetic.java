@@ -4,8 +4,9 @@ import java.util.*;
 
 public class Genetic {
 
-    private static int DATA_SIZE = 1200;
+    private static int DATA_SIZE = 25000;
     private static int GENERATIONS = 100;
+    private static int POPULATIONS = 5;
     public static void main(String[] args) {
     // read in our data
 
@@ -40,14 +41,11 @@ public class Genetic {
             selectedData[i] = data[i];
         }
 
-        Population subPop1 = new Population();
-        Population subPop2 = new Population();
-        Population subPop3 = new Population();
+        Population[] populations = new Population[POPULATIONS];
 
-        Population[] populations = {subPop1, subPop2, subPop3};
-
-        for(int i = 0; i < 3; i++)
+        for(int i = 0; i < 5; i++)
         {
+            populations[i] = new Population();
             float[][] constant = new float[DATA_SIZE/6][4];
             float[][] variable = new float[DATA_SIZE/6][4];
             int size = DATA_SIZE/3;
@@ -68,11 +66,19 @@ public class Genetic {
             {
                 populations[i].nextGen();
             }
-            if(count%2 == 0)
+            if(count%10 == 0)
             {
-                populations[0].migrate(populations[1]);
-                populations[1].migrate(populations[2]);
-                populations[2].migrate(populations[0]);
+                for(int i = 0; i<populations.length; i++)
+                {
+                    if(i == populations.length - 1)
+                    {
+                        populations[i].migrate(populations[0]);
+                    }
+                    else
+                    {
+                        populations[i].migrate(populations[i+1]);
+                    }
+                }
             }
             List<FunTree> fittest = new ArrayList<FunTree>();
             for(int i = 0; i<populations.length; i++)
