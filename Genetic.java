@@ -7,6 +7,7 @@ public class Genetic {
     private static int DATA_SIZE = 25000;
     private static int GENERATIONS = 100;
     private static int POPULATIONS = 10;
+    private static int MIGRATION_RATE = 2;
     public static void main(String[] args) {
     // read in our data
 
@@ -71,7 +72,7 @@ public class Genetic {
             {
                 populations[i].nextGen();
             }
-            if(count%20 == 0)
+            if(count%MIGRATION_RATE == 0)
             {
                 for(int i = 0; i<populations.length; i++)
                 {
