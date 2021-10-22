@@ -219,7 +219,7 @@ public class FunTree
         randomNodeP1.replace(temp);
 
         
-        }while(child1.getDepth() >8 && child2.getDepth()>8);
+        }while(child1.getDepth() >maxDepth && child2.getDepth()>maxDepth);
         
         FunTree[] children = {child1, child2};
         return children;
@@ -236,7 +236,7 @@ public class FunTree
             Node randomNode = mutateTree.getRandomNode();
             //int depth = getDepthUtil(randomNode);
             randomTree(randomNode, maxDepth);
-        }while(mutateTree.getDepth() > 8);
+        }while(mutateTree.getDepth() > maxDepth);
         
 
         return mutateTree;
