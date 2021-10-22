@@ -202,7 +202,7 @@ public class FunTree
         FunTree child2 = new FunTree();
         int child1Depth = maxDepth+1;
         int child2Depth = maxDepth+1;
-        while(child1Depth > maxDepth && child2Depth > maxDepth)
+        while(child1Depth > maxDepth || child2Depth > maxDepth)
         {
             //Tree[] crosssover (Tree crossover)
         //pick random node on this tree
