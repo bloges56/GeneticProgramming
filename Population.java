@@ -8,7 +8,6 @@ public class Population {
     public List<FunTree> population;
     private static int populationSize = 200;
     private static int TOURNAMENT_SIZE = 4;
-    private static float[][] allData;
 
     public Population()
     {
@@ -147,6 +146,8 @@ public class Population {
             selected.add(trees.get(random));
         }
         Population selectedPop = new Population(selected);
+        selectedPop.variableData = variableData;
+        selectedPop.fixedData = fixedData;
         return selectedPop.getMostFit();
         
     }
