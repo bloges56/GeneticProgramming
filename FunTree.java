@@ -4,8 +4,9 @@ public class FunTree
     private static String[] operations = {"add", "sub", "mul", "div"};
 
     //set depth max depth range
-    public static int maxDepth = 8;
+    private static int maxDepth = 9;
 
+    private static int maxSize = 30;
     //set range of constant for leaves
     private final int constantRange = 10;
 
@@ -202,9 +203,11 @@ public class FunTree
         FunTree child2 = new FunTree();
         int child1Depth = maxDepth+1;
         int child2Depth = maxDepth+1;
-        while(child1Depth > maxDepth || child2Depth > maxDepth)
+        int child1Size = maxSize+1;
+        int child2Size = maxSize+1;
+        while(child1Depth > maxDepth || child1Size > maxSize|| child2Depth > maxDepth || child2Size > maxSize)
         {
-            //Tree[] crosssover (Tree crossover)
+        //Tree[] crosssover (Tree crossover)
         //pick random node on this tree
         child1 = new FunTree(rootNode);
         Node randomNodeP1 = child1.getRandomNode();
@@ -223,6 +226,8 @@ public class FunTree
         randomNodeP1.replace(temp); 
 
         child1Depth = child1.getDepth();
+        child1Size = child2.getSize();
+        child2Size = child2.getSize();
         child2Depth = child2.getDepth();
         }
         
@@ -230,19 +235,21 @@ public class FunTree
         return children;
     }
     
-
+    //favor trees with less scalars
 
     //mutation method
     public FunTree mutation()
     {
         FunTree mutateTree = new FunTree(new Node());
         int depth = maxDepth +1;
-        while(depth > maxDepth){
+        int size = maxSize+1;
+        while(depth > maxDepth || size > maxSize){
             mutateTree = new FunTree(rootNode); 
             Node randomNode = mutateTree.getRandomNode();
             //int depth = getDepthUtil(randomNode);
             randomTree(randomNode, maxDepth);
             depth = mutateTree.getDepth();
+            size = mutateTree.getSize();
         }
         return mutateTree;
     }

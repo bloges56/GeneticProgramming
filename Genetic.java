@@ -86,10 +86,6 @@ public class Genetic {
                     }
                 }
             }
-            if(count%50 == 0)
-            {
-                FunTree.maxDepth++;
-            }
             count++;
             List<FunTree> fittest = new ArrayList<FunTree>();
             for(int i = 0; i<populations.length; i++)
