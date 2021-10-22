@@ -72,9 +72,9 @@ public class Population {
 
     public void migrate(Population other)
     {
-        removeLeastFit();
+        other.removeLeastFit();
         other.population.addAll(getFittest());
-        other.variableData = variableData;
+        other.variableData = variableData.clone();
     }
 
     
