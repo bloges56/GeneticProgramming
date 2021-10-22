@@ -5,7 +5,7 @@ public class Population {
     public float[][] fixedData;
     public float[][] variableData;
     public List<FunTree> population;
-    private static int populationSize = 500;
+    private static int populationSize = 100;
     private static int TOURNAMENT_SIZE = 3;
 
     public Population()
