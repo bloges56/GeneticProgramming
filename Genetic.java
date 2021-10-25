@@ -20,7 +20,7 @@ public class Genetic {
                     for(int j = 0; j < rowS.length; j++)
                     {
                         data[i][j] = Float.parseFloat(rowS[j]);
-                        
+
                     }
                     i++;
                 }
@@ -32,7 +32,7 @@ public class Genetic {
         {
             System.out.println("data not found");
         }
-        
+
          //crossover add fitter of two children
 
 
@@ -51,6 +51,7 @@ public class Genetic {
          // generate random, but valid trees in an array
 
        FunTree[] fittestTrees = new FunTree[10];
+       Integer[] genAr = new Integer [10];
        for(int runs = 0; runs < 10; runs++)
        {
         FunTree[] generation = new FunTree[POPULATION_SIZE];
@@ -62,7 +63,7 @@ public class Genetic {
            // set float value fittest greater than selected value
         FunTree fittestTree = getFittest(generation);
         float fittestVal = fittestTree.getFitness();
-
+        int genCount = 0;
         // loop while fittest > some value
         while(fittestVal >= 0.0007168)
         {
@@ -72,20 +73,28 @@ public class Genetic {
             fittestVal = fittestTree.getFitness();
             System.out.println(fittestTree);
             System.out.println(fittestVal);
-            generation = nextGen;  
+            genCount++;
+            System.out.println("Gen count: " + genCount);
+            generation = nextGen;
+
         }
 
         fittestTrees[runs] = fittestTree;
+        genAr[runs] = genCount;
        }
-        
+
        FunTree bestTree = getSmallest(fittestTrees);
+
+       for(int x = 0; x < genAr.length; x++){
+        System.out.println(genAr[x]);
+       }
 
         // test if our returned expression is "over-fitted"
         FunTree.data = data;
         System.out.println(bestTree);
         System.out.println(bestTree.getFitness());
-        
-        
+
+
     }
 
     private static FunTree getSmallest(FunTree[] trees)
@@ -108,7 +117,7 @@ public class Genetic {
                 }
             }
         }
-  
+
           return smallestTree;
     }
 
@@ -126,10 +135,10 @@ public class Genetic {
                   fittestValue = fitness;
               }
           }
-  
+
           return fittestTree;
       }
-   
+
 
        // method to run tournament selection, returning a tree
     // pick N random trees from list and return the fittest
@@ -139,11 +148,11 @@ public class Genetic {
         for(int i = 0; i < TOURNAMENT_SIZE; i++)
         {
             int random = (int) (Math.random() * trees.length);
-            
+
             selected[i] = trees[random];
         }
         return getFittest(selected);
-        
+
     }
 
     // method to produce the next generation and return the fittest in the generation
@@ -181,7 +190,7 @@ public class Genetic {
                 // mate.selected++;
                 FunTree child = selected.crossover(mate);
                 nextGen[i] = child;
-                
+
             }
             else
             {
